@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "2650",
+      "fullName": "DENISON PERIN KOLLING",
+      "email": "denis@gmail.com",
+      "password": "Teste@1234"
+    },
+    {
+      "id": "218e",
+      "fullName": "DENISON PERIN KOLLING",
+      "email": "denis@gmail.com",
+      "password": "Teste@1234"
+    },
+    {
+      "id": "49a2",
+      "fullName": "John Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    }
+  ]
+}
