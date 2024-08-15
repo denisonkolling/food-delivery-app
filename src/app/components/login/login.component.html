@@ -13,6 +13,13 @@
         name="email"
         placeholder="Type your email"
       />
+      <small
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['pattern']">Email should be valid</div>
+      </small>
     </div>
     <div class="field">
       <label for="password">Password</label>
@@ -24,10 +31,24 @@
         name="password"
         placeholder="Type your password"
       />
+      <small
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="password.errors?.['required']">Password is required</div>
+        <div *ngIf="password.errors?.['pattern']">
+          Password must include at least 8 characters, letters, numbers and a
+          special character
+        </div>
+      </small>
     </div>
-    <p-button styleClass="w-full" label="Sign In" />
+    <p-button
+      styleClass="w-full"
+      label="Sign In"
+      [disabled]="loginForm.invalid"
+    />
     <div class="mt-3 text-center">
-      Not a member? <a routerLink="/register">Register</a>
+      Not a member? <a [routerLink]="['/register']">Register</a>
     </div>
   </p-card>
 </form>
