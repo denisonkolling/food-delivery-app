@@ -87,14 +87,17 @@
           <div *ngIf="confirmPassword.errors?.['required']">
             Confirm password is required
           </div>
-          <div *ngIf="confirmPassword != password">
-            Passwords must be equals
-          </div>
+        </small>
+        <small
+          class="block p-error"
+          *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+        >
+          Password should match
         </small>
       </div>
       <p-button
         styleClass="w-full"
-        label="Sign In"
+        label="Register"
         [disabled]="registerForm.invalid"
       />
       <div class="mt-3 text-center">

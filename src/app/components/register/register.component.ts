@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { REGEX } from '../../shared/constants/regex.constants';
+import { passwordMatchValidator } from '../../shared/password-match.directive';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       fullName: ['', [
         Validators.required,
-        // Validators.pattern(REGEX.EMAIL)
+        Validators.pattern(REGEX.NAME)
       ]],
       email: ['', [
         Validators.required,
@@ -37,7 +38,7 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern(REGEX.PASSWORD)
       ]]
-    });
+    }, { validators: passwordMatchValidator });
   }
 
 
