@@ -4,8 +4,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { REGEX } from '../../shared/constants/regex.constants';
+import { AuthService } from '../../services/auth.service';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-login',
@@ -19,7 +22,12 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService,
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [
         Validators.required,
@@ -39,4 +47,22 @@ export class LoginComponent {
   get password() { return this.loginForm.controls['password']; }
 
 
+  loginUser() {
+    const { email, password } = this.loginForm.value;
+    this.authService.getUserByEmail(email as string).subscribe(
+      response => {
+        if (response.length > 0 && response[0].password === password) {
+          sessionStorage.setItem('email', email as string);
+          this.router.navigate(['/home']);
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'email or password is wrong' });
+        }
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+      }
+
+    )
+  }
 }
+
