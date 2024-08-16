@@ -55,7 +55,7 @@ export class LoginComponent {
           sessionStorage.setItem('email', email as string);
           this.router.navigate(['/home']);
         } else {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'email or password is wrong' });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email or password is wrong' });
         }
       },
       error => {

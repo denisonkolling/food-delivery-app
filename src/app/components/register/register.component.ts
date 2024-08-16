@@ -24,7 +24,12 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private messageService: MessageService, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private messageService: MessageService, 
+    private router: Router) {
+      
     this.registerForm = this.fb.group({
       fullName: ['', [
         Validators.required,
@@ -65,7 +70,7 @@ export class RegisterComponent {
     this.authService.registerUser(postData as User).subscribe(
       response => {
         console.log(response),
-          this.messageService.add({ severity: 'sucess', summary: 'Sucess', detail: 'Register Sucessfully' })
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register Successfully' })
         this.router.navigate(['login']);
       },
       error => {
