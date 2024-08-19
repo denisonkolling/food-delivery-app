@@ -6,5 +6,93 @@
       "email": "john@gmail.com",
       "password": "John@123"
     }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "createdAt": "2024-06-10T21:20:22Z",
+      "customer": {
+        "id": 1,
+        "name": "João Silva",
+        "email": "joao.silva@example.com"
+      },
+      "total": 150.75,
+      "items": [
+        {
+          "id": 1,
+          "product": {
+            "id": 1,
+            "name": "Pizza Margherita"
+          },
+          "quantity": 2,
+          "price": 50.25
+        },
+        {
+          "id": 2,
+          "product": {
+            "id": 2,
+            "name": "Coca-Cola 2L"
+          },
+          "quantity": 1,
+          "price": 10.25
+        },
+        {
+          "id": 3,
+          "product": {
+            "id": 3,
+            "name": "Sorvete de Chocolate"
+          },
+          "quantity": 1,
+          "price": 40.0
+        }
+      ],
+      "restaurant": {
+        "id": 1,
+        "name": "Pizzaria do João"
+      }
+    },
+    {
+      "id": 2,
+      "createdAt": "2024-06-10T21:25:22Z",
+      "customer": {
+        "id": 2,
+        "name": "Maria Oliveira",
+        "email": "maria.oliveira@example.com"
+      },
+      "total": 85.5,
+      "items": [
+        {
+          "id": 4,
+          "product": {
+            "id": 4,
+            "name": "Hambúrguer"
+          },
+          "quantity": 2,
+          "price": 25.0
+        },
+        {
+          "id": 5,
+          "product": {
+            "id": 5,
+            "name": "Batata Frita"
+          },
+          "quantity": 2,
+          "price": 10.25
+        },
+        {
+          "id": 6,
+          "product": {
+            "id": 6,
+            "name": "Refrigerante"
+          },
+          "quantity": 2,
+          "price": 7.0
+        }
+      ],
+      "restaurant": {
+        "id": 2,
+        "name": "Lanchonete da Maria"
+      }
+    }
   ]
 }
