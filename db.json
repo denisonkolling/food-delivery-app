@@ -93,6 +93,135 @@
         "id": 2,
         "name": "Lanchonete da Maria"
       }
+    },
+    {
+      "id": 3,
+      "createdAt": "2024-06-11T10:15:30Z",
+      "customer": {
+        "id": 3,
+        "name": "Carlos Pereira",
+        "email": "carlos.pereira@example.com"
+      },
+      "total": 120.5,
+      "items": [
+        {
+          "id": 7,
+          "product": {
+            "id": 7,
+            "name": "Sushi Combo"
+          },
+          "quantity": 1,
+          "price": 80.0
+        },
+        {
+          "id": 8,
+          "product": {
+            "id": 8,
+            "name": "Green Tea"
+          },
+          "quantity": 2,
+          "price": 20.25
+        },
+        {
+          "id": 9,
+          "product": {
+            "id": 9,
+            "name": "Mochi"
+          },
+          "quantity": 1,
+          "price": 20.25
+        }
+      ],
+      "restaurant": {
+        "id": 3,
+        "name": "Sushi House"
+      }
+    },
+    {
+      "id": 4,
+      "createdAt": "2024-06-11T12:45:00Z",
+      "customer": {
+        "id": 4,
+        "name": "Ana Costa",
+        "email": "ana.costa@example.com"
+      },
+      "total": 95.0,
+      "items": [
+        {
+          "id": 10,
+          "product": {
+            "id": 10,
+            "name": "Spaghetti Carbonara"
+          },
+          "quantity": 1,
+          "price": 45.0
+        },
+        {
+          "id": 11,
+          "product": {
+            "id": 11,
+            "name": "Garlic Bread"
+          },
+          "quantity": 2,
+          "price": 15.0
+        },
+        {
+          "id": 12,
+          "product": {
+            "id": 12,
+            "name": "Tiramisu"
+          },
+          "quantity": 1,
+          "price": 20.0
+        }
+      ],
+      "restaurant": {
+        "id": 4,
+        "name": "Italiano Ristorante"
+      }
+    },
+    {
+      "id": 5,
+      "createdAt": "2024-06-11T15:30:45Z",
+      "customer": {
+        "id": 5,
+        "name": "Pedro Santos",
+        "email": "pedro.santos@example.com"
+      },
+      "total": 60.75,
+      "items": [
+        {
+          "id": 13,
+          "product": {
+            "id": 13,
+            "name": "Chicken Burger"
+          },
+          "quantity": 1,
+          "price": 30.0
+        },
+        {
+          "id": 14,
+          "product": {
+            "id": 14,
+            "name": "French Fries"
+          },
+          "quantity": 1,
+          "price": 15.75
+        },
+        {
+          "id": 15,
+          "product": {
+            "id": 15,
+            "name": "Milkshake"
+          },
+          "quantity": 1,
+          "price": 15.0
+        }
+      ],
+      "restaurant": {
+        "id": 5,
+        "name": "Burger Joint"
+      }
     }
   ]
 }
