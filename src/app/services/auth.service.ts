@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/auth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { BASE_URL } from '../shared/constants/base-url.constants'
 
 
 @Injectable({
@@ -10,19 +11,17 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000'
-
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
 
   registerUser(userDetails: User) {
-    return this.http.post(`${this.baseUrl}/users`, userDetails);
+    return this.http.post(`${BASE_URL}/users`, userDetails);
   }
 
   getUserByEmail(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`);
+    return this.http.get<User[]>(`${BASE_URL}/users?email=${email}`);
   }
 
   logoutUser() {
