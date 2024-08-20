@@ -17,11 +17,11 @@ export class AuthService {
   ) { }
 
   registerUser(userDetails: User) {
-    return this.http.post(`${BASE_URL}/users`, userDetails);
+    return this.http.post(`${BASE_URL.BASE_URL}/users`, userDetails);
   }
 
   getUserByEmail(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${BASE_URL}/users?email=${email}`);
+    return this.http.get<User[]>(`${BASE_URL.BASE_URL}/users?email=${email}`);
   }
 
   logoutUser() {

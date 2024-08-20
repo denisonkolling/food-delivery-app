@@ -15,6 +15,6 @@ export class OrderService {
 
 
     findAllOrders(): Observable<Order[]> {
-        return this.http.get<Order[]>(`${BASE_URL}/orders`);
+        return this.http.get<Order[]>(`${BASE_URL.BASE_URL}/orders`);
     }
 }
