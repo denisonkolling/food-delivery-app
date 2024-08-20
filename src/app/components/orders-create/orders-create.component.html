@@ -1,0 +1,99 @@
+<div class="flex justify-content-center align-items-center">
+  <div class="card">
+    <p-card header="Create Order" [style]="{ border: '1px solid #E0E0E0' }">
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <!-- Name Field -->
+        <div class="field">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="name"
+            class="w-full"
+            name="name"
+            placeholder="Type your name"
+          />
+          <small
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="name.errors?.['required']">Name is required</div>
+            <div *ngIf="name.errors?.['minlength']">
+              Name should be at least 3 characters long
+            </div>
+          </small>
+        </div>
+
+        <!-- Email Field -->
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="email"
+            class="w-full"
+            name="email"
+            placeholder="Type your email"
+          />
+          <small
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Email should be valid</div>
+          </small>
+        </div>
+
+        <!-- Address Field -->
+        <div class="field">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="address"
+            class="w-full"
+            name="address"
+            placeholder="Type your address"
+          />
+          <small
+            *ngIf="address.invalid && (address.dirty || address.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="address.errors?.['required']">Address is required</div>
+          </small>
+        </div>
+
+        <!-- Quantity Field -->
+        <div class="field">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            pInputText
+            formControlName="quantity"
+            class="w-full"
+            name="quantity"
+            placeholder="Enter quantity"
+          />
+          <small
+            *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="quantity.errors?.['required']">
+              Quantity is required
+            </div>
+            <div *ngIf="quantity.errors?.['min']">
+              Quantity must be at least 1
+            </div>
+          </small>
+        </div>
+
+        <p-button
+          styleClass="w-full"
+          label="Create Order"
+          [disabled]="orderForm.invalid"
+          type="submit"
+        ></p-button>
+      </form>
+    </p-card>
+  </div>
+</div>
