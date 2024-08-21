@@ -1,8 +1,10 @@
 <div class="flex justify-content-center align-items-center">
-  <div class="card">
-    <p-card header="All Orders" [style]="{ border: '1px solid #E0E0E0' }">
+  <div class="card border-2 border-round border-100">
+    <p-card header="All Orders">
       <p-table
         [value]="orders"
+        [paginator]="true"
+        [rows]="5"
         [tableStyle]="{ 'min-width': '25rem', 'max-width': '45rem' }"
       >
         <ng-template pTemplate="header">
