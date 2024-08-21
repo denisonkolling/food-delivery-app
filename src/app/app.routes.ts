@@ -7,6 +7,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersCreateComponent } from './components/orders-create/orders-create.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { OrderCreateComponent } from './components/order-create/orders-create.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,11 @@ export const routes: Routes = [
     {
         path: 'settings/account',
         component: AccountSettingsComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'orders/create',
+        component: OrderCreateComponent,
         canActivate: [authGuard]
     },
     {

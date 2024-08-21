@@ -5,6 +5,42 @@
       "fullName": "John Doe",
       "email": "john@gmail.com",
       "password": "John@123"
+    },
+    {
+      "id": "c3dd",
+      "fullName": "DENISON PERIN KOLLING",
+      "email": "denisonkolling@gmail.com",
+      "password": "Teste@teste1234"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Pizzaria do João"
+    },
+    {
+      "id": 2,
+      "name": "Lanchonete da Maria"
+    },
+    {
+      "id": 3,
+      "name": "Sushi House"
+    },
+    {
+      "id": 4,
+      "name": "Italiano Ristorante"
+    },
+    {
+      "id": 5,
+      "name": "Burger Joint"
     }
   ],
   "orders": [
@@ -43,7 +79,7 @@
             "name": "Sorvete de Chocolate"
           },
           "quantity": 1,
-          "price": 40.0
+          "price": 40
         }
       ],
       "restaurant": {
@@ -68,7 +104,7 @@
             "name": "Hambúrguer"
           },
           "quantity": 2,
-          "price": 25.0
+          "price": 25
         },
         {
           "id": 5,
@@ -86,7 +122,7 @@
             "name": "Refrigerante"
           },
           "quantity": 2,
-          "price": 7.0
+          "price": 7
         }
       ],
       "restaurant": {
@@ -111,7 +147,7 @@
             "name": "Sushi Combo"
           },
           "quantity": 1,
-          "price": 80.0
+          "price": 80
         },
         {
           "id": 8,
@@ -145,7 +181,7 @@
         "name": "Ana Costa",
         "email": "ana.costa@example.com"
       },
-      "total": 95.0,
+      "total": 95,
       "items": [
         {
           "id": 10,
@@ -154,7 +190,7 @@
             "name": "Spaghetti Carbonara"
           },
           "quantity": 1,
-          "price": 45.0
+          "price": 45
         },
         {
           "id": 11,
@@ -163,7 +199,7 @@
             "name": "Garlic Bread"
           },
           "quantity": 2,
-          "price": 15.0
+          "price": 15
         },
         {
           "id": 12,
@@ -172,7 +208,7 @@
             "name": "Tiramisu"
           },
           "quantity": 1,
-          "price": 20.0
+          "price": 20
         }
       ],
       "restaurant": {
@@ -197,7 +233,7 @@
             "name": "Chicken Burger"
           },
           "quantity": 1,
-          "price": 30.0
+          "price": 30
         },
         {
           "id": 14,
@@ -215,13 +251,176 @@
             "name": "Milkshake"
           },
           "quantity": 1,
-          "price": 15.0
+          "price": 15
         }
       ],
       "restaurant": {
         "id": 5,
         "name": "Burger Joint"
       }
+    },
+    {
+      "id": 6,
+      "createdAt": "2024-06-12T15:30:45Z",
+      "customer": {
+        "id": 5,
+        "name": "Pedro Santos",
+        "email": "pedro.santos@example.com"
+      },
+      "total": 60.75,
+      "items": [
+        {
+          "id": 13,
+          "product": {
+            "id": 13,
+            "name": "Chicken Burger"
+          },
+          "quantity": 1,
+          "price": 30
+        },
+        {
+          "id": 14,
+          "product": {
+            "id": 14,
+            "name": "French Fries"
+          },
+          "quantity": 1,
+          "price": 15.75
+        },
+        {
+          "id": 15,
+          "product": {
+            "id": 15,
+            "name": "Milkshake"
+          },
+          "quantity": 1,
+          "price": 15
+        }
+      ],
+      "restaurant": {
+        "id": 5,
+        "name": "Burger Joint"
+      }
+    },
+    {
+      "id": 7,
+      "createdAt": "2024-06-11T12:45:00Z",
+      "customer": {
+        "id": 4,
+        "name": "Ana Costa",
+        "email": "ana.costa@example.com"
+      },
+      "total": 95,
+      "items": [
+        {
+          "id": 10,
+          "product": {
+            "id": 10,
+            "name": "Spaghetti Carbonara"
+          },
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "id": 11,
+          "product": {
+            "id": 11,
+            "name": "Garlic Bread"
+          },
+          "quantity": 2,
+          "price": 15
+        },
+        {
+          "id": 12,
+          "product": {
+            "id": 12,
+            "name": "Tiramisu"
+          },
+          "quantity": 1,
+          "price": 20
+        }
+      ],
+      "restaurant": {
+        "id": 4,
+        "name": "Italiano Ristorante"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Pizza Margherita",
+      "price": 32
+    },
+    {
+      "id": 2,
+      "name": "Coca-Cola 2L",
+      "price": 15
+    },
+    {
+      "id": 3,
+      "name": "Sorvete de Chocolate",
+      "price": 8.9
+    },
+    {
+      "id": 4,
+      "name": "Hambúrguer",
+      "price": 28.9
+    },
+    {
+      "id": 5,
+      "name": "Batata Frita",
+      "price": 18.75
+    },
+    {
+      "id": 6,
+      "name": "Refrigerante",
+      "price": 8.6
+    },
+    {
+      "id": 7,
+      "name": "Sushi Combo",
+      "price": 32.99
+    },
+    {
+      "id": 8,
+      "name": "Green Tea",
+      "price": 12.5
+    },
+    {
+      "id": 9,
+      "name": "Mochi",
+      "price": 16.99
+    },
+    {
+      "id": 10,
+      "name": "Spaghetti Carbonara",
+      "price": 28.9
+    },
+    {
+      "id": 11,
+      "name": "Garlic Bread",
+      "price": 11.5
+    },
+    {
+      "id": 12,
+      "name": "Tiramisu",
+      "price": 15.99
+    },
+    {
+      "id": 13,
+      "name": "Chicken Burger",
+      "price": 26
+    },
+    {
+      "id": 14,
+      "name": "French Fries",
+      "price": 21
+    },
+    {
+      "id": 15,
+      "name": "Milkshake",
+      "price": 12
     }
   ]
 }
