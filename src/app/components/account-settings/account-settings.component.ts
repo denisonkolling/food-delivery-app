@@ -8,11 +8,12 @@ import { REGEX } from '../../shared/constants/regex.constants';
 import { HeaderComponent } from '../layout/header/header.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { LayoutComponent } from '../layout/layout.component';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent],
+  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent, ProfileCardComponent],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.css'
 })
