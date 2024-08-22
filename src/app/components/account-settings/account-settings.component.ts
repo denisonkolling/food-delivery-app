@@ -7,11 +7,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { REGEX } from '../../shared/constants/regex.constants';
 import { HeaderComponent } from '../layout/header/header.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { LayoutComponent } from '../layout/layout.component';
 
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent,],
+  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.css'
 })

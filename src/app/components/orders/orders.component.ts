@@ -7,11 +7,12 @@ import { OrdersTableComponent } from '../orders-table/orders-table.component';
 import { OrdersCreateComponent } from '../orders-create/orders-create.component';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { LayoutComponent } from '../layout/layout.component';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, FooterComponent, RouterOutlet, OrdersTableComponent, OrdersCreateComponent, ButtonModule, CommonModule],
+  imports: [HeaderComponent, SidebarComponent, FooterComponent, RouterOutlet, OrdersTableComponent, OrdersCreateComponent, ButtonModule, CommonModule, LayoutComponent],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })

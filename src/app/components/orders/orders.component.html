@@ -1,32 +1,20 @@
-<div class="grid grid-nogutter flex flex-column h-screen">
-  <div class="col-12">
-    <app-header></app-header>
+<app-layout>
+  <div>
+    <app-orders-table *ngIf="!isCreatingOrder"></app-orders-table>
+    <app-orders-create *ngIf="isCreatingOrder"></app-orders-create>
   </div>
-
-  <div class="col-12 flex-grow-1 flex">
-    <div class="col-fixed" style="width: 250px">
-      <app-sidebar></app-sidebar>
-    </div>
-
-    <div class="flex flex-column mt-2">
-      <div>
-        <app-orders-table *ngIf="!isCreatingOrder"></app-orders-table>
-        <app-orders-create *ngIf="isCreatingOrder"></app-orders-create>
-      </div>
-      <div>
-        <div class="flex m-4 justify-content-center align-content-center">
-          <p-button
-            label="Back to Orders List"
-            (click)="toggleCreateOrder()"
-            *ngIf="isCreatingOrder"
-          />
-          <p-button
-            label="Create New Order"
-            (click)="toggleCreateOrder()"
-            *ngIf="!isCreatingOrder"
-          />
-        </div>
-      </div>
+  <div>
+    <div class="flex m-4 justify-content-center align-content-center">
+      <p-button
+        label="Back to Orders List"
+        (click)="toggleCreateOrder()"
+        *ngIf="isCreatingOrder"
+      />
+      <p-button
+        label="Create New Order"
+        (click)="toggleCreateOrder()"
+        *ngIf="!isCreatingOrder"
+      />
     </div>
   </div>
-</div>
+</app-layout>

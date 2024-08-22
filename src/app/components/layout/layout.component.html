@@ -1,0 +1,19 @@
+<div class="grid grid-nogutter">
+  <!-- Header -->
+  <div class="col-12">
+    <app-header></app-header>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="col-12 flex md:flex-row flex-column flex-grow-1">
+    <!-- Sidebar -->
+    <div class="col-12 md:col-2 sm:col-12 col-fixed">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Form Content -->
+    <div class="col-12 md:col-10">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
