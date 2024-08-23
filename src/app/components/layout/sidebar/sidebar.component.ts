@@ -1,15 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarService } from '../../../services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [PanelMenuModule],
+  imports: [PanelMenuModule, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  constructor(private sidebarService: SidebarService) { }
+
   items: any[] = [];
+
+  isVisible: boolean = true;
 
   ngOnInit() {
     this.items = [
@@ -84,6 +91,12 @@ export class SidebarComponent {
         ]
       }
     ];
+
+    this.sidebarService.sidebarVisible$.subscribe(
+      isVisible => this.isVisible = isVisible
+    );
+
   }
+
 }
 

@@ -7,12 +7,17 @@
   <!-- Main Content Area -->
   <div class="col-12 flex md:flex-row flex-column flex-grow-1">
     <!-- Sidebar -->
-    <div class="col-12 md:col-2 sm:col-12 col-fixed">
+    <div class="col-12 md:col-2 sm:col-12 col-fixed" *ngIf="isSidebarVisible">
       <app-sidebar></app-sidebar>
     </div>
 
     <!-- Form Content -->
-    <div class="col-12 md:col-10">
+    <div
+      [ngClass]="{
+        'col-12 md:col-10': isSidebarVisible,
+        'col-12': !isSidebarVisible
+      }"
+    >
       <ng-content></ng-content>
     </div>
   </div>
