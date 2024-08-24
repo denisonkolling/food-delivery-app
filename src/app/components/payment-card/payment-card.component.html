@@ -4,11 +4,8 @@
       label="Card"
       icon="pi pi-credit-card"
       class="m-1"
-      [class]="
-        selectedPaymentMethod === 'card'
-          ? 'button-outlined button-primary'
-          : 'button-secondary'
-      "
+      [severity]="selectedPaymentMethod === 'card' ? 'primary' : 'secondary'"
+      [outlined]="selectedPaymentMethod !== 'card'"
       (click)="selectPaymentMethod('card')"
     >
     </p-button>
@@ -16,11 +13,8 @@
       label="Paypal"
       icon="pi pi-paypal"
       class="m-1"
-      [class]="
-        selectedPaymentMethod === 'paypal'
-          ? 'button-outlined button-primary'
-          : 'button-secondary'
-      "
+      [severity]="selectedPaymentMethod === 'paypal' ? 'primary' : 'secondary'"
+      [outlined]="selectedPaymentMethod !== 'paypal'"
       (click)="selectPaymentMethod('paypal')"
     >
     </p-button>
@@ -28,11 +22,8 @@
       label="Bank"
       icon="pi pi-money-bill"
       class="m-1"
-      [class]="
-        selectedPaymentMethod === 'bank'
-          ? 'button-outlined button-primary'
-          : 'button-secondary'
-      "
+      [severity]="selectedPaymentMethod === 'bank' ? 'primary' : 'secondary'"
+      [outlined]="selectedPaymentMethod !== 'bank'"
       (click)="selectPaymentMethod('bank')"
     >
     </p-button>
@@ -41,12 +32,50 @@
   <form *ngIf="getCreditCardForm()" (ngSubmit)="handleSubmit()">
     <div class="p-fluid">
       <!-- Campos do formulário de cartão de crédito -->
+      <div class="mt-2">
+        <div class="field">
+          <label for="bank">Card Holder Name</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="cardHolderName"
+            placeholder=""
+          />
+        </div>
+        <div class="field">
+          <label for="bank">Card Number</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="cardNumber"
+            placeholder=""
+          />
+        </div>
+        <div class="field">
+          <label for="bank">Expiry Date</label>
+          <input type="date" pInputText class="w-full" name="expiryDate" />
+        </div>
+      </div>
     </div>
   </form>
 
   <form *ngIf="getPaypalForm()" (ngSubmit)="handleSubmit()">
     <div class="p-fluid">
       <!-- Campos do formulário do PayPal -->
+      <div class="mt-2">
+        <div class="field">
+          <label for="bank">Email Address</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="email"
+            placeholder=""
+          />
+        </div>
+      </div>
     </div>
   </form>
 
