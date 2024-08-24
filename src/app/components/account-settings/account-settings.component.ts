@@ -9,11 +9,12 @@ import { HeaderComponent } from '../layout/header/header.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { LayoutComponent } from '../layout/layout.component';
 import { ProfileCardComponent } from '../profile-card/profile-card.component';
+import { PaymentCardComponent } from '../payment-card/payment-card.component';
 
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent, ProfileCardComponent],
+  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent, ProfileCardComponent, PaymentCardComponent],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.css'
 })

@@ -1,0 +1,106 @@
+<p-card header="Payment" class="p-mb-4">
+  <div class="flex justify-content-start align-content-center my-2 gap-2">
+    <p-button
+      label="Card"
+      icon="pi pi-credit-card"
+      class="m-1"
+      [class]="
+        selectedPaymentMethod === 'card'
+          ? 'button-outlined button-primary'
+          : 'button-secondary'
+      "
+      (click)="selectPaymentMethod('card')"
+    >
+    </p-button>
+    <p-button
+      label="Paypal"
+      icon="pi pi-paypal"
+      class="m-1"
+      [class]="
+        selectedPaymentMethod === 'paypal'
+          ? 'button-outlined button-primary'
+          : 'button-secondary'
+      "
+      (click)="selectPaymentMethod('paypal')"
+    >
+    </p-button>
+    <p-button
+      label="Bank"
+      icon="pi pi-money-bill"
+      class="m-1"
+      [class]="
+        selectedPaymentMethod === 'bank'
+          ? 'button-outlined button-primary'
+          : 'button-secondary'
+      "
+      (click)="selectPaymentMethod('bank')"
+    >
+    </p-button>
+  </div>
+
+  <form *ngIf="getCreditCardForm()" (ngSubmit)="handleSubmit()">
+    <div class="p-fluid">
+      <!-- Campos do formulário de cartão de crédito -->
+    </div>
+  </form>
+
+  <form *ngIf="getPaypalForm()" (ngSubmit)="handleSubmit()">
+    <div class="p-fluid">
+      <!-- Campos do formulário do PayPal -->
+    </div>
+  </form>
+
+  <form *ngIf="getBankForm()" (ngSubmit)="handleSubmit()">
+    <div class="p-fluid">
+      <!-- Campos do formulário de conta bancária -->
+      <div class="mt-2">
+        <div class="field">
+          <label for="bank">Bank</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="bank"
+            placeholder="Enter the bank name"
+          />
+        </div>
+        <div class="field">
+          <label for="bank">Sort Code</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="sortCode"
+            placeholder="Enter the sort code"
+          />
+        </div>
+        <div class="field">
+          <label for="bank">Account Number</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            name="sortCode"
+            placeholder="Account number"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="flex justify-content-end mt-2">
+    <p-button
+      label="Save"
+      icon="pi pi-check"
+      class="m-2"
+      type="submit"
+    ></p-button>
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      class="m-2"
+      severity="secondary"
+      type="button"
+    ></p-button>
+  </div>
+</p-card>
