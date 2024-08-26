@@ -6,9 +6,10 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProductService } from '../../services/product.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-products-form',
+  selector: 'app-product-form',
   standalone: true,
   imports: [LayoutComponent, CommonModule, ReactiveFormsModule, CardModule, ButtonModule, InputTextModule],
   providers: [CurrencyPipe, ProductService],
@@ -19,7 +20,7 @@ export class ProductFormComponent {
 
   productForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private currencyPipe: CurrencyPipe) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private currencyPipe: CurrencyPipe, private messageService: MessageService,) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       price: [1, [Validators.required, Validators.min(0.01)]],
@@ -44,14 +45,18 @@ export class ProductFormComponent {
 
       formData.price = parseFloat(formData.price);
 
-      this.productService.addProduct(formData).subscribe(
-        response => {
+      this.productService.addProduct(formData).subscribe({
+        next: (response) => {
           console.log('Produto adicionado com sucesso:', response);
         },
-        error => {
-          console.error('Erro ao adicionar o produto:', error);
+        error: (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error occurred while creating the product. Please try again.' });
+        },
+        complete: () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product created successfully' })
+          this.productForm.reset();
         }
-      );
+      });
     } else {
       console.log('Formulário inválido');
     }
