@@ -5,9 +5,9 @@ import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { OrdersCreateComponent } from './components/orders-create/orders-create.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { OrderCreateComponent } from './components/order-create/orders-create.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 export const routes: Routes = [
     {
@@ -41,6 +41,11 @@ export const routes: Routes = [
     {
         path: 'orders/create',
         component: OrderCreateComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'products/new',
+        component: ProductFormComponent,
         canActivate: [authGuard]
     },
     {
