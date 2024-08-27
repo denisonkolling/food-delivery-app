@@ -1,25 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { REGEX } from '../../shared/constants/regex.constants';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
-import { REGEX } from '../../shared/constants/regex.constants';
-import { HeaderComponent } from '../layout/header/header.component';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
-import { LayoutComponent } from '../layout/layout.component';
-import { ProfileCardComponent } from '../profile-card/profile-card.component';
-import { PaymentCardComponent } from '../payment-card/payment-card.component';
-import { ProfileFormComponent } from '../profile-form/profile-form.component';
 
 @Component({
-  selector: 'app-account-settings',
+  selector: 'app-profile-form',
   standalone: true,
-  imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, HeaderComponent, SidebarComponent, LayoutComponent, ProfileCardComponent, PaymentCardComponent, ProfileFormComponent],
-  templateUrl: './account-settings.component.html',
-  styleUrl: './account-settings.component.css'
+  imports: [ButtonModule, CardModule, FormsModule, ReactiveFormsModule, CommonModule, InputTextModule],
+  templateUrl: './profile-form.component.html',
+  styleUrl: './profile-form.component.css'
 })
-export class AccountSettingsComponent {
+export class ProfileFormComponent {
+
+  userForm: FormGroup;
 
   passwordForm: FormGroup;
 
@@ -28,10 +24,34 @@ export class AccountSettingsComponent {
   formEditProfile: boolean = true
 
   constructor(private fb: FormBuilder) {
+    this.userForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(REGEX.EMAIL)]],
+      address: ['', Validators.required],
+    });
+
     this.passwordForm = this.fb.group({
       password: ['', [Validators.required, Validators.pattern(REGEX.PASSWORD)]],
       passwordConfirm: ['', [Validators.required, Validators.pattern(REGEX.PASSWORD)]],
     });
+  }
+
+  onSubmit(): void {
+    if (this.userForm.valid) {
+      console.log('Form submitted:', this.userForm.value);
+    }
+  }
+
+  get name() {
+    return this.userForm.controls['name'];
+  }
+
+  get email() {
+    return this.userForm.controls['email'];
+  }
+
+  get address() {
+    return this.userForm.controls['address'];
   }
 
   btnShowFormChangePassword() {
