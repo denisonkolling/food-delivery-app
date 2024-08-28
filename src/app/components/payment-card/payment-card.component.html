@@ -55,7 +55,12 @@
         </div>
         <div class="field">
           <label for="bank">Expiry Date</label>
-          <input type="date" pInputText class="w-full" name="expiryDate" />
+          <p-calendar
+            name="expiryDate"
+            class="w-full"
+            [showIcon]="true"
+            dateFormat="dd/mm/yy"
+          ></p-calendar>
         </div>
       </div>
     </div>
