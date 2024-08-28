@@ -5,11 +5,12 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
+import { Calendar, CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-profile-form',
   standalone: true,
-  imports: [ButtonModule, CardModule, FormsModule, ReactiveFormsModule, CommonModule, InputTextModule],
+  imports: [ButtonModule, CardModule, FormsModule, ReactiveFormsModule, CommonModule, InputTextModule, CalendarModule],
   templateUrl: './profile-form.component.html',
   styleUrl: './profile-form.component.css'
 })
