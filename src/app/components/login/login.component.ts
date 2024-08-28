@@ -53,6 +53,8 @@ export class LoginComponent {
       response => {
         if (response.length > 0 && response[0].password === password) {
           sessionStorage.setItem('email', email as string);
+          sessionStorage.setItem('name', response[0].fullName as string);
+          sessionStorage.setItem('photo', response[0].photo as string);
           this.router.navigate(['/home']);
         } else {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email or password is wrong' });
