@@ -1,99 +1,99 @@
 <app-layout>
   <p-card header="Account Settings" styleClass="border-1 border-200">
-    <!-- Profile Edit Form -->
-    <div class="flex flex-row">
-      <div>
-        <app-profile-card></app-profile-card>
-      </div>
-      <div>
-        <app-profile-form></app-profile-form>
-      </div>
-    </div>
-    <!-- Password Change Form -->
-    <div *ngIf="formChangePassword">
-      <p-card header="Password Update" styleClass="border-1 border-300">
-        <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordChange()">
-          <div class="field">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              pInputText
-              formControlName="password"
-              class="w-full"
-              name="password"
-              placeholder="Type your password"
-            />
-            <small
-              *ngIf="password.invalid && (password.dirty || password.touched)"
-              class="block p-error"
-            >
-              <div *ngIf="password.errors?.['required']">
-                Password is required
-              </div>
-              <div *ngIf="password.errors?.['pattern']">
-                Password must include at least 8 characters, letters, numbers
-                and a special character
-              </div>
-            </small>
-          </div>
-          <div>
-            <!-- Confirm Password -->
+    <div class="flex flex-column gap-2">
+      <app-profile-card></app-profile-card>
+
+      <app-profile-form *ngIf="formEditProfile"></app-profile-form>
+
+      <app-payment-card></app-payment-card>
+
+      <!-- Password Change Form -->
+      <div *ngIf="formChangePassword">
+        <p-card header="Password Update" styleClass="border-1 border-300">
+          <form
+            [formGroup]="passwordForm"
+            (ngSubmit)="onSubmitPasswordChange()"
+          >
             <div class="field">
-              <label for="passwordConfirm">Confirm Password</label>
+              <label for="password">Password</label>
               <input
                 type="password"
                 pInputText
-                formControlName="passwordConfirm"
+                formControlName="password"
                 class="w-full"
-                name="passwordConfirm"
-                placeholder="Confirm your new password"
+                name="password"
+                placeholder="Type your password"
               />
               <small
-                *ngIf="
-                  confirmPassword.invalid &&
-                  (confirmPassword.dirty || confirmPassword.touched)
-                "
+                *ngIf="password.invalid && (password.dirty || password.touched)"
                 class="block p-error"
               >
-                <div *ngIf="confirmPassword.errors?.['required']">
-                  Password confirm is required
+                <div *ngIf="password.errors?.['required']">
+                  Password is required
                 </div>
-                <div *ngIf="confirmPassword.errors?.['passwordConfirm']">
-                  Password confirm should be valid
+                <div *ngIf="password.errors?.['pattern']">
+                  Password must include at least 8 characters, letters, numbers
+                  and a special character
                 </div>
               </small>
             </div>
-          </div>
+            <div>
+              <!-- Confirm Password -->
+              <div class="field">
+                <label for="passwordConfirm">Confirm Password</label>
+                <input
+                  type="password"
+                  pInputText
+                  formControlName="passwordConfirm"
+                  class="w-full"
+                  name="passwordConfirm"
+                  placeholder="Confirm your new password"
+                />
+                <small
+                  *ngIf="
+                    confirmPassword.invalid &&
+                    (confirmPassword.dirty || confirmPassword.touched)
+                  "
+                  class="block p-error"
+                >
+                  <div *ngIf="confirmPassword.errors?.['required']">
+                    Password confirm is required
+                  </div>
+                  <div *ngIf="confirmPassword.errors?.['passwordConfirm']">
+                    Password confirm should be valid
+                  </div>
+                </small>
+              </div>
+            </div>
 
+            <p-button
+              styleClass="w-full"
+              label="Save Password"
+              type="submit"
+              [disabled]="passwordForm.invalid"
+            ></p-button>
+          </form>
+        </p-card>
+      </div>
+
+      <!-- Toggle Buttons -->
+      <div class="mt-2 flex flex-column gap-2">
+        <div>
           <p-button
             styleClass="w-full"
-            label="Save Password"
-            type="submit"
-            [disabled]="passwordForm.invalid"
+            label="Change Profile"
+            (onClick)="btnShowFormEditProfile()"
+            *ngIf="!formEditProfile"
           ></p-button>
-        </form>
-      </p-card>
-    </div>
-
-    <app-payment-card></app-payment-card>
-
-    <!-- Toggle Buttons -->
-    <div class="mt-2 flex flex-column gap-2">
-      <div>
-        <p-button
-          styleClass="w-full"
-          label="Change Profile"
-          (onClick)="btnShowFormEditProfile()"
-          *ngIf="!formEditProfile"
-        ></p-button>
-      </div>
-      <div>
-        <p-button
-          styleClass="w-full"
-          label="Change Password"
-          (onClick)="btnShowFormChangePassword()"
-          *ngIf="!formChangePassword"
-        ></p-button>
+        </div>
+        <div>
+          <p-button
+            styleClass="w-full"
+            label="Change Password"
+            (onClick)="btnShowFormChangePassword()"
+            *ngIf="!formChangePassword"
+          ></p-button>
+        </div>
       </div>
     </div>
   </p-card>
