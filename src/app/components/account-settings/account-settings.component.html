@@ -1,14 +1,17 @@
 <app-layout>
-  <p-card header="Account Settings" styleClass="border-1 border-200">
-    <div class="flex flex-column gap-2">
-      <div class="flex flex-wrap">
-        <app-profile-card class="col-12 lg:col-6"></app-profile-card>
-        <app-profile-form class="col-12 lg:col-6"></app-profile-form>
-      </div>
-      <div class="flex flex-wrap">
-        <app-password-form class="col-12 lg:col-6"></app-password-form>
-        <app-payment-card class="col-12 lg:col-6"></app-payment-card>
-      </div>
+  <div class="flex flex-column gap-2">
+    <div class="flex flex-wrap">
+      <app-profile-card class="col-12 lg:col-6"></app-profile-card>
+      <app-profile-form class="col-12 lg:col-6"></app-profile-form>
     </div>
-  </p-card>
+    <div class="flex flex-wrap">
+      <app-password-form class="col-12 lg:col-6"></app-password-form>
+      <app-payment-card class="col-12 lg:col-6"></app-payment-card>
+    </div>
+    <div class="flex flex-wrap">
+      <app-profile-settings-card
+        class="col-12 lg:col-6"
+      ></app-profile-settings-card>
+    </div>
+  </div>
 </app-layout>

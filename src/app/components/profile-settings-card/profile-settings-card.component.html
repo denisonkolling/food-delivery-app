@@ -1,0 +1,60 @@
+<p-card header="Settings" styleClass="border-1 border-300">
+  <div>
+    <div class="flex align-items-center">
+      <i class="pi pi-check-circle mr-2" style="font-size: 1.5rem"></i>
+      <div class="flex align-items-center w-full justify-content-between">
+        <div class="m-4">
+          <p class="text-base font-bold">Delivery Order Confirmation</p>
+          <span>You will be notified when delivery orders are done</span>
+        </div>
+        <p-inputSwitch class="mr-4"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="flex align-items-center">
+      <i class="pi pi-envelope mr-2" style="font-size: 1.5rem"></i>
+      <div class="flex align-items-center w-full justify-content-between">
+        <div class="m-4">
+          <p class="text-base font-bold">Email Notification</p>
+          <span>Turn on email notification to get updates</span>
+        </div>
+        <p-inputSwitch class="mr-4"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="flex align-items-center">
+      <i class="pi pi-mobile mr-2" style="font-size: 1.5rem"></i>
+      <div class="flex align-items-center w-full justify-content-between">
+        <div class="m-4">
+          <p class="text-base font-bold">Text Message Notification</p>
+          <span>Turn on SMS notification to get updates</span>
+        </div>
+        <p-inputSwitch class="mr-4"></p-inputSwitch>
+      </div>
+    </div>
+  </div>
+  <div class="flex align-items-center">
+    <i class="pi pi-globe mr-2" style="font-size: 1.5rem"></i>
+    <div class="flex align-items-center w-full justify-content-between">
+      <div class="m-4">
+        <p class="text-base font-bold">Language Change</p>
+        <span>Translate messages to the driver language</span>
+      </div>
+      <p-inputSwitch class="mr-4"></p-inputSwitch>
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-2">
+    <p-button
+      label="Save"
+      icon="pi pi-check"
+      class="m-2"
+      type="submit"
+    ></p-button>
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      class="m-2"
+      severity="secondary"
+      type="button"
+    ></p-button>
+  </div>
+</p-card>
