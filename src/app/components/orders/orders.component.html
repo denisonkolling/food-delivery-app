@@ -1,7 +1,7 @@
 <app-layout>
   <div>
     <app-orders-table *ngIf="!isCreatingOrder"></app-orders-table>
-    <app-orders-create *ngIf="isCreatingOrder"></app-orders-create>
+    <app-order-create *ngIf="isCreatingOrder"></app-order-create>
   </div>
   <div>
     <div class="flex m-4 gap-2 justify-content-center align-content-center">
@@ -15,8 +15,6 @@
         (click)="toggleCreateOrder()"
         *ngIf="!isCreatingOrder"
       />
-      <p-button label="Create New Order List" [routerLink]="['/orders/create']">
-      </p-button>
     </div>
   </div>
 </app-layout>

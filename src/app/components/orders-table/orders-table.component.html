@@ -1,31 +1,30 @@
-<div class="card border-2 border-round border-100">
-  <p-card header="All Orders">
-    <p-table
-      [value]="orders"
-      [paginator]="true"
-      [rows]="5"
-      [tableStyle]="{ 'min-width': '25rem' }"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Id</th>
-          <th>Date</th>
-          <th>Customer</th>
-          <th>Restaurant</th>
-          <th class="text-right">Total</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-order>
-        <tr>
-          <td>{{ order.id }}</td>
-          <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
-          <td>{{ order.customer.name }}</td>
-          <td>{{ order.restaurant.name }}</td>
-          <td class="text-right">
-            {{ order.total | currency : "USD" : "symbol" : "1.2-2" }}
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-card>
+<div class="border-1 border-round p-4 border-300">
+  <div class="text-2xl font-bold text-center m-4">All Orders</div>
+  <p-table
+    [value]="orders"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '25rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Restaurant</th>
+        <th class="text-right">Total</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
+        <td>{{ order.customer.name }}</td>
+        <td>{{ order.restaurant.name }}</td>
+        <td class="text-right">
+          {{ order.total | currency : "USD" : "symbol" : "1.2-2" }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
