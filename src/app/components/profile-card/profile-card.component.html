@@ -1,4 +1,4 @@
-<p-card header="{{ userName }}" styleClass="border-1 border-300 col-12">
+<p-card header="{{ userName }}" styleClass="border-1 border-300">
   <div class="flex flex-column align-items-center mb-4">
     <p-avatar
       image="{{ userProfilePhoto }}"
@@ -6,34 +6,34 @@
       size="xlarge"
       alt="Image"
     ></p-avatar>
-    <div class="flex flex-column align-items-center gap-2 mt-4">
-      <p-button
-        icon="pi pi-user"
-        label="Personal Information"
-        [rounded]="true"
-        severity="secondary"
-        class="p-button-text"
-        routerLink="/personal-information"
-        size="small"
-      ></p-button>
+    <div class="flex flex-column gap-2 mt-4">
+      <div>
+        <a href="#" class="flex align-items-center no-underline">
+          <i class="pi pi-user mr-2"></i>
+          <p class="text-base font-medium">Personal Information</p>
+        </a>
+      </div>
 
-      <p-button
-        icon="pi pi-credit-card"
-        label="Payment"
-        [rounded]="true"
-        severity="secondary"
-        class="p-button-text"
-        routerLink="/payment"
-        size="small"
-      ></p-button>
-      <p-button
-        icon="pi pi-cog"
-        label="Settings"
-        [rounded]="true"
-        severity="secondary"
-        routerLink="/settings"
-        size="small"
-      />
+      <div>
+        <a href="#" class="flex align-items-center no-underline">
+          <i class="pi pi-credit-card mr-2"></i>
+          <p class="text-base font-medium">Payment</p>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="flex align-items-center no-underline">
+          <i class="pi pi-lock mr-2"></i>
+          <p class="text-base font-medium">Password</p>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="flex align-items-center no-underline">
+          <i class="pi pi-cog mr-2"></i>
+          <p class="text-base font-medium">Setting</p>
+        </a>
+      </div>
     </div>
   </div>
 </p-card>
