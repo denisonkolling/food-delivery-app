@@ -1,0 +1,16 @@
+<app-layout>
+  <p>Drivers works!</p>
+  <p-button (click)="showDialog()" icon="pi pi-user-plus" label="Create Driver">
+  </p-button>
+
+  <p-dialog
+    header="Create Driver"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '70rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true"
+  >
+    <app-driver-form></app-driver-form>
+  </p-dialog>
+</app-layout>

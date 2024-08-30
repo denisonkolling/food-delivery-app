@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { OrderCreateComponent } from './components/order-create/orders-create.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { DriversComponent } from './components/drivers/drivers.component';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,11 @@ export const routes: Routes = [
     {
         path: 'products/new',
         component: ProductFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'drivers',
+        component: DriversComponent,
         canActivate: [authGuard]
     },
     {

@@ -60,7 +60,7 @@ export class SidebarComponent {
         label: 'Drivers',
         icon: 'pi pi-fw pi-id-card',
         items: [
-          { label: 'All Drivers', icon: 'pi pi-fw pi-list', routerLink: ['/drivers/all'] },
+          { label: 'All Drivers', icon: 'pi pi-fw pi-list', routerLink: ['/drivers'] },
           { label: 'Add New Driver', icon: 'pi pi-fw pi-plus', routerLink: ['/drivers/new'] },
           { label: 'Driver Ratings', icon: 'pi pi-fw pi-star', routerLink: ['/drivers/ratings'] }
         ]
