@@ -10,6 +10,7 @@
     [style]="{ width: '70rem' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
     [maximizable]="true"
+    (onHide)="closeDialog()"
   >
     <app-driver-form></app-driver-form>
   </p-dialog>

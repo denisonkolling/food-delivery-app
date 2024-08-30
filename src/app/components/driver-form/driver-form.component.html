@@ -1,0 +1,147 @@
+<div class="flex align-content-center justify-content-center">
+  <form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+    <div class="flex">
+      <!-- First Name Field -->
+      <div class="field col-6">
+        <label for="name">First Name</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="firstName"
+          class="w-full"
+          name="name"
+          placeholder="Type driver first name"
+        />
+        <small
+          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="firstName.errors?.['required']">First name is required</div>
+          <div *ngIf="firstName.errors?.['minlength']">
+            Name should be at least 3 characters long
+          </div>
+        </small>
+      </div>
+
+      <!-- Last Name Field -->
+      <div class="field col-6">
+        <label for="name">Last Name</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="lastName"
+          class="w-full"
+          name="lastName"
+          placeholder="Type driver last name"
+        />
+        <small
+          *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="lastName.errors?.['required']">Last name is required</div>
+          <div *ngIf="lastName.errors?.['minlength']">
+            Name should be at least 3 characters long
+          </div>
+        </small>
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="field col-6">
+        <div class="field">
+          <label for="birthdate">Birthdate</label>
+          <div>
+            <p-calendar
+              name="birthdate"
+              class="w-full"
+              [showIcon]="true"
+              dateFormat="dd/mm/yy"
+              placeholder="Select driver birthdate"
+            ></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nationality Field -->
+      <div class="field col-6">
+        <div class="field">
+          <label for="Nationality">Nationality</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="nationality"
+            class="w-full"
+            name="nationality"
+            placeholder="Type driver nationality"
+          />
+          <small
+            *ngIf="
+              nationality.invalid && (nationality.dirty || nationality.touched)
+            "
+            class="block p-error"
+          >
+            <div *ngIf="nationality.errors?.['required']">
+              Nationality is required
+            </div>
+            <div *ngIf="nationality.errors?.['email']">
+              Nationality should be valid
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex">
+      <!-- License Number -->
+      <div class="field col-6">
+        <label for="licenseNumber">License Number</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="licenseNumber"
+          class="w-full"
+          name="licenseNumber"
+          placeholder="Type driver license number"
+        />
+        <small
+          *ngIf="licenseNumber.invalid && (licenseNumber.dirty || licenseNumber.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="licenseNumber.errors?.['required']">License number is required</div>
+        </small>
+      </div>
+
+      <div class="field col-6">
+        <label for="licenseExpiryDate">License Expiry Date</label>
+        <div>
+          <p-calendar
+            name="licenseExpiryDate"
+            class="w-full"
+            [showIcon]="true"
+            dateFormat="dd/mm/yy"
+            placeholder="License Expiry"
+          ></p-calendar>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex gap-3 mt-1">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          class="w-full"
+          styleClass="w-full"
+          (click)="resetForm()"
+        />
+        <p-button
+          label="Save"
+          class="w-full"
+          styleClass="w-full"
+          [disabled]="driverForm.invalid"
+          type="submit"
+        />
+      </div>
+    </div>
+  </form>
+</div>
