@@ -17,15 +17,15 @@ import { Restaurant } from '../../interfaces/restaurant.interface';
 import { Product } from '../../interfaces/product.interface';
 import { MessageService } from 'primeng/api';
 import { LayoutComponent } from '../layout/layout.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-create',
   standalone: true,
   imports: [CardModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, TableModule, DropdownModule, MultiSelectModule, LayoutComponent, RouterLink],
   providers: [OrderService, RestaurantService, ProductService, CustomerService],
-  templateUrl: './order-create.component.html',
-  styleUrls: ['./order-create.component.css']
+  templateUrl: './order-create-dropdown.component.html',
+  styleUrls: ['./order-create-dropdown.component.css']
 })
 
 export class OrderCreateComponent implements OnInit {
@@ -42,6 +42,7 @@ export class OrderCreateComponent implements OnInit {
     private restaurantService: RestaurantService,
     private productService: ProductService,
     private messageService: MessageService,
+    private router: Router,
   ) {
 
   }
@@ -91,6 +92,10 @@ export class OrderCreateComponent implements OnInit {
     const selectedProducts = event.value;
     this.productsArray.clear();
     selectedProducts.forEach((product: Product) => this.addProduct(product));
+  }
+
+  createOrder() {
+    this.router.navigate(['register']);
   }
 
 }
