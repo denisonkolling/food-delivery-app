@@ -1,0 +1,192 @@
+<app-layout>
+  <div class="border-1 border-round p-4 border-300">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="text-2xl font-bold text-center m-4">Create New Order</div>
+
+      <!-- Linha para Customer e Restaurant -->
+      <div class="grid">
+        <div class="field col-2">
+          <label for="customer">
+            <i class="pi pi-search mr-1"></i>
+            Customer ID
+          </label>
+          <input
+            type="number"
+            pInputText
+            formControlName="customer"
+            class="w-full"
+            name="customer"
+          />
+          <small
+            *ngIf="customer.invalid && (customer.dirty || customer.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="customer.errors?.['required']">
+              Customer is required
+            </div>
+          </small>
+        </div>
+        <div class="field col-4">
+          <label for="CustomerName">Customer Name</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            formControlName="customerName"
+            readonly
+          />
+        </div>
+
+        <div class="field col-2">
+          <label for="restaurant">
+            <i class="pi pi-search mr-1"></i>
+            Restaurant ID
+          </label>
+          <input
+            type="number"
+            pInputText
+            formControlName="restaurant"
+            class="w-full"
+            name="restaurant"
+          />
+          <small
+            *ngIf="
+              restaurant.invalid && (restaurant.dirty || restaurant.touched)
+            "
+            class="block p-error"
+          >
+            <div *ngIf="restaurant.errors?.['required']">
+              Restaurant is required
+            </div>
+          </small>
+        </div>
+
+        <div class="field col-4">
+          <label for="restaurantName">Restaurant Name</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            formControlName="restaurantName"
+            readonly
+          />
+        </div>
+      </div>
+
+      <!-- Linha para as informações do produto -->
+      <div class="grid">
+        <div class="field col-2">
+          <label for="product">
+            <i class="pi pi-search mr-1"></i>
+            Product ID
+          </label>
+          <input
+            type="text"
+            pInputText
+            formControlName="product"
+            class="w-full"
+            name="product"
+          />
+          <small
+            *ngIf="product.invalid && (product.dirty || product.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="product.errors?.['required']">Product is required</div>
+          </small>
+        </div>
+
+        <div class="field col-4">
+          <label for="productName">Product Name</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            formControlName="productName"
+            readonly
+          />
+        </div>
+
+        <div class="field col-2">
+          <label for="productQuantity">Quantity</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            formControlName="productQuantity"
+          />
+        </div>
+
+        <div class="field col-2">
+          <label for="productPrice">Price</label>
+          <input
+            type="number"
+            pInputText
+            class="w-full"
+            formControlName="productPrice"
+            readonly
+          />
+        </div>
+        <div class="field col-2">
+          <div class="flex justify-content-center align-items-end h-full">
+            <p-button (click)="addItem()"> Add Item </p-button>
+          </div>
+        </div>
+      </div>
+      <div class="p-field">
+        <p-table
+          [value]="form.get('items')?.value ?? []"
+          [paginator]="true"
+          [rows]="5"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Sub Total </th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr>
+              <td>{{ rowData.product.name }}</td>
+              <td>{{ rowData.quantity }}</td>
+              <td>{{ rowData.price | currency }}</td>
+              <td>{{ rowData.price * rowData.quantity | currency }}</td>
+              <td>
+                <button
+                  (click)="removeProduct(rowIndex)"
+                  pButton
+                  icon="pi pi-trash"
+                  class="p-button-danger"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <tr>
+              <td colspan="3"><strong>Total:</strong></td>
+              <td>{{ total | currency }}</td>
+              <td></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="flex justify-content-end mt-2">
+        <p-button
+          label="Save Order"
+          icon="pi pi-check"
+          class="m-2"
+          type="submit"
+        ></p-button>
+        <p-button
+          label="Cancel"
+          icon="pi pi-times"
+          class="m-2"
+          severity="secondary"
+          type="button"
+        ></p-button>
+      </div>
+    </form>
+  </div>
+</app-layout>

@@ -6,9 +6,10 @@ import { authGuard } from './guards/auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
-import { OrderCreateComponent } from './components/order-create/orders-create.component';
+import { OrderCreateComponent } from './components/order-create-dropdown/orders-create-dropdown.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { DriversComponent } from './components/drivers/drivers.component';
+import { OrderCreateV2Component } from './components/order-create-table/order-create-table.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,11 @@ export const routes: Routes = [
     {
         path: 'drivers',
         component: DriversComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'orders/create-new',
+        component: OrderCreateV2Component,
         canActivate: [authGuard]
     },
     {

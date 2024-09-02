@@ -11,10 +11,11 @@
         *ngIf="isCreatingOrder"
       />
       <p-button
-        label="Create New Order"
+        label="Create New Order Drop Down"
         (click)="toggleCreateOrder()"
         *ngIf="!isCreatingOrder"
       />
+      <p-button label="Create New Order Table List" (click)="createOrder()" />
     </div>
   </div>
 </app-layout>
