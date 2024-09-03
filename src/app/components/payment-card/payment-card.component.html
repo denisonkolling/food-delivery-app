@@ -40,17 +40,16 @@
             pInputText
             class="w-full"
             name="cardHolderName"
-            placeholder=""
+            placeholder="John Doe"
           />
         </div>
         <div class="field">
           <label for="bank">Card Number</label>
-          <input
-            type="text"
-            pInputText
+          <p-inputMask
+            mask="9999-9999-9999-9999"
             class="w-full"
-            name="cardNumber"
-            placeholder=""
+            name="value"
+            placeholder="1234-5678-9012-3456"
           />
         </div>
         <div class="field">
@@ -59,7 +58,8 @@
             name="expiryDate"
             class="w-full"
             [showIcon]="true"
-            dateFormat="dd/mm/yy"
+            dateFormat="mm/yy"
+            placeholder="MM/YY"
           ></p-calendar>
         </div>
       </div>
@@ -115,7 +115,7 @@
             pInputText
             class="w-full"
             name="sortCode"
-            placeholder="Account number"
+            placeholder="Enter the account number"
           />
         </div>
       </div>

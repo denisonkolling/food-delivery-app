@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { InputMask, InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-payment-card',
   standalone: true,
-  imports: [CardModule, CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, InputTextModule, CalendarModule],
+  imports: [CardModule, CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, InputTextModule, CalendarModule, InputMaskModule],
   templateUrl: './payment-card.component.html',
   styleUrls: ['./payment-card.component.scss']
 })
