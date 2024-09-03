@@ -81,7 +81,7 @@
             Product ID
           </label>
           <input
-            type="text"
+            type="number"
             pInputText
             formControlName="product"
             class="w-full"
@@ -109,11 +109,22 @@
         <div class="field col-2">
           <label for="productQuantity">Quantity</label>
           <input
-            type="text"
+            type="number"
             pInputText
             class="w-full"
             formControlName="productQuantity"
           />
+          <small
+            *ngIf="
+              productQuantity.invalid &&
+              (productQuantity.dirty || productQuantity.touched)
+            "
+            class="block p-error"
+          >
+            <div *ngIf="productQuantity.errors?.['required']">
+              Quantity is required
+            </div>
+          </small>
         </div>
 
         <div class="field col-2">
@@ -128,22 +139,20 @@
         </div>
         <div class="field col-2">
           <div class="flex justify-content-center align-items-end h-full">
-            <p-button (click)="addItem()"> Add Item </p-button>
+            <p-button (click)="addItem()" [disabled]="form.invalid">
+              Add Item
+            </p-button>
           </div>
         </div>
       </div>
       <div class="p-field">
-        <p-table
-          [value]="form.get('items')?.value ?? []"
-          [paginator]="true"
-          [rows]="5"
-        >
+        <p-table [value]="form.get('items')?.value ?? []">
           <ng-template pTemplate="header">
             <tr>
               <th>Product</th>
               <th>Quantity</th>
               <th>Unit Price</th>
-              <th>Sub Total </th>
+              <th>Sub Total</th>
               <th>Actions</th>
             </tr>
           </ng-template>

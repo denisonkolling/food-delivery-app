@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
 import { RestaurantService } from '../../services/restaurant.service';
 import { ProductService } from '../../services/product.service';
+import { REGEX } from '../../shared/constants/regex.constants';
 
 @Component({
   selector: 'app-order-create-v2',
@@ -26,23 +27,17 @@ export class OrderCreateV2Component {
     private customerService: CustomerService,
     private restaurantService: RestaurantService,
     private productService: ProductService,
-  ) {
-    this.form = this.fb.group({
-      customer: [null, Validators.required],
-      restaurant: [null, Validators.required],
-      items: this.fb.array([], Validators.required)
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      customer: [''],
+      customer: [null, Validators.required],
       customerName: [{ value: '', disabled: true }],
-      restaurant: [''],
+      restaurant: [null, Validators.required],
       restaurantName: [{ value: '', disabled: true }],
-      product: [''],
+      product: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
+      productQuantity: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
       productName: [{ value: '', disabled: true }],
-      productQuantity: [''],
       productPrice: [{ value: '', disabled: true }],
       items: this.fb.array([]),
     });
@@ -91,35 +86,41 @@ export class OrderCreateV2Component {
     return this.form.controls['product']
   }
 
-  get itemsArray(): FormArray {
-    return this.form.get('items') as FormArray;
+  get itemsArray(): FormArray<FormGroup> {
+    return this.form.get('items') as FormArray<FormGroup>;
+  }
+
+  get productQuantity() {
+    return this.form.controls['productQuantity']
   }
 
   addItem(): void {
 
-    const product = this.form.get('product')!.value;
-    const productName = this.form.get('productName')!.value;
-    const productQuantity = this.form.get('productQuantity')!.value;
-    const productPrice = this.form.get('productPrice')!.value;
+    if (this.form.get('product')?.valid && this.form.get('productQuantity')?.valid) {
 
-    const newItem = this.fb.group({
-      id: [this.itemsArray.length + 1],
-      product: this.fb.group({
-        id: [product],
-        name: [productName],
-      }),
-      quantity: [productQuantity, [Validators.required, Validators.min(1)]],
-      price: [productPrice, Validators.required],
-    });
+      const product = this.form.get('product')!.value;
+      const productName = this.form.get('productName')!.value;
+      const productQuantity = this.form.get('productQuantity')!.value;
+      const productPrice = this.form.get('productPrice')!.value;
 
-    this.itemsArray.push(newItem);
+      const newItem = this.fb.group({
+        id: [this.itemsArray.length + 1],
+        product: this.fb.group({ id: [product], name: [productName] }),
+        quantity: [productQuantity, [Validators.required, Validators.min(1)]],
+        price: [productPrice, Validators.required],
+      });
 
-    this.form.patchValue({
-      product: '',
-      productName: '',
-      productQuantity: '',
-      productPrice: '',
-    });
+      this.itemsArray.push(newItem);
+
+      this.form.patchValue({
+        product: '',
+        productName: '',
+        productQuantity: '',
+        productPrice: '',
+      });
+    } else {
+      return
+    }
   }
 
   get total(): number {
@@ -135,7 +136,7 @@ export class OrderCreateV2Component {
   }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.form.value);
   }
 
 }
