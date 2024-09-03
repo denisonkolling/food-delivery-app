@@ -7,4 +7,7 @@ export const REGEX = {
 
     // Validates if the string is a valid full name.
     NAME: /^[a-zA-Z]+(?: [a-zA-Z]+)*$/,
+
+    // Validates if the string is a valid full name.
+    NUMBER: /^[1-9]*$/,
 };
