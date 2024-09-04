@@ -10,6 +10,7 @@ import { OrderCreateComponent } from './components/order-create-dropdown/orders-
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { DriversComponent } from './components/drivers/drivers.component';
 import { OrderCreateV2Component } from './components/order-create-table/order-create-table.component';
+import { ProductsComponent } from './components/products/products.component';
 
 export const routes: Routes = [
     {
@@ -58,6 +59,11 @@ export const routes: Routes = [
     {
         path: 'orders/create-new',
         component: OrderCreateV2Component,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'products/all',
+        component: ProductsComponent,
         canActivate: [authGuard]
     },
     {
