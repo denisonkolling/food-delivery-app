@@ -1,0 +1,30 @@
+<p-card [style]="{ width: '360px' }">
+  <ng-template pTemplate="header">
+    <img
+      alt="Product Image"
+      [src]="product.imageUrl"
+      style="width: 100%; height: auto; object-fit: cover"
+    />
+  </ng-template>
+
+  <h2 class="my-0">{{ product.name }}</h2>
+  <p class="my-0">{{ product.description }}</p>
+  <h3 class="mt-2 mb-0">{{ product.price | currency : "USD" }}</h3>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end">
+      <p-button
+        label="Add"
+        icon="pi pi-shopping-cart"
+        class="w-full"
+        (onClick)="addToCart(product)"
+      ></p-button>
+      <p-button
+        label="Details"
+        icon="pi pi-info-circle"
+        class="w-full"
+        (onClick)="viewDetails(product)"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-card>
