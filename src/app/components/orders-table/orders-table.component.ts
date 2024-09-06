@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/order.service';
 import { TableModule } from 'primeng/table';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-orders-table',
   standalone: true,
-  imports: [TableModule, CommonModule, CardModule, ButtonModule, RouterLink],
+  imports: [TableModule, CommonModule, CardModule, ButtonModule, RouterLink, CapitalizePipe],
   providers: [OrderService],
   templateUrl: './orders-table.component.html',
   styleUrl: './orders-table.component.css'

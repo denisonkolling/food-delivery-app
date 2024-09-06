@@ -12,6 +12,7 @@
         <th>Date</th>
         <th>Customer</th>
         <th>Restaurant</th>
+        <th>Status</th>
         <th class="text-right">Total</th>
       </tr>
     </ng-template>
@@ -21,6 +22,12 @@
         <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
         <td>{{ order.customer.name }}</td>
         <td>{{ order.restaurant.name }}</td>
+        <td>
+          <i *ngIf="order.status === 'COMPLETED'" class="pi pi-check text-green-500"></i>
+          <i *ngIf="order.status === 'CANCELED'" class="pi pi-times text-red-500"></i>
+          <i *ngIf="order.status === 'PENDING'" class="pi pi-clock text-yellow-500"></i>
+          {{ order.status | capitalize }}
+        </td>
         <td class="text-right">
           {{ order.total | currency : "USD" : "symbol" : "1.2-2" }}
         </td>

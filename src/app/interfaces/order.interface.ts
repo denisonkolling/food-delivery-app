@@ -9,4 +9,5 @@ export interface Order {
     total: number;
     items: OrderItem[];
     restaurant: Restaurant;
+    statu: string;
 }
