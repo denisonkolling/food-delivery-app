@@ -43,4 +43,30 @@ export class OrdersTableComponent implements OnInit {
       createdAt: new Date(order.createdAt)
     }));
   }
+
+  getStatusIcon(status: string): string {
+    switch (status) {
+      case 'COMPLETED':
+        return 'pi pi-check';
+      case 'CANCELLED':
+        return 'pi pi-times';
+      case 'PENDING':
+        return 'pi pi-clock';
+      default:
+        return '';
+    }
+  }
+
+  getStatusSeverity(status: string): 'success' | 'warning' | 'danger' | 'secondary' {
+    switch (status) {
+      case 'COMPLETED':
+        return 'success';
+      case 'CANCELLED':
+        return 'danger';
+      case 'PENDING':
+        return 'warning';
+      default:
+        return 'secondary';
+    }
+  }
 }
