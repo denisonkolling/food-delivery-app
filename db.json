@@ -4,7 +4,8 @@
       "id": "49a2",
       "fullName": "John Doe",
       "email": "john@gmail.com",
-      "password": "John@123"
+      "password": "John@123",
+      "photo": "https://img.freepik.com/free-photo/medium-shot-happy-man-smiling_23-2148221808.jpg?size=626&ext=jpg"
     },
     {
       "id": "c3dd",
@@ -53,6 +54,7 @@
     {
       "id": "1",
       "createdAt": "2024-06-10T21:20:22Z",
+      "status": "PENDING",
       "customer": {
         "id": 1,
         "name": "João Silva",
@@ -96,6 +98,7 @@
     {
       "id": "2",
       "createdAt": "2024-06-10T21:25:22Z",
+      "status": "COMPLETED",
       "customer": {
         "id": 2,
         "name": "Maria Oliveira",
@@ -139,6 +142,7 @@
     {
       "id": "3",
       "createdAt": "2024-06-11T10:15:30Z",
+      "status": "CANCELED",
       "customer": {
         "id": 3,
         "name": "Carlos Pereira",
@@ -182,6 +186,7 @@
     {
       "id": "4",
       "createdAt": "2024-06-11T12:45:00Z",
+      "status": "COMPLETED",
       "customer": {
         "id": 4,
         "name": "Ana Costa",
@@ -225,6 +230,7 @@
     {
       "id": "5",
       "createdAt": "2024-06-11T15:30:45Z",
+      "status": "COMPLETED",
       "customer": {
         "id": 5,
         "name": "Pedro Santos",
@@ -268,6 +274,7 @@
     {
       "id": "6",
       "createdAt": "2024-06-12T15:30:45Z",
+      "status": "PENDING",
       "customer": {
         "id": 5,
         "name": "Pedro Santos",
@@ -311,6 +318,7 @@
     {
       "id": "7",
       "createdAt": "2024-06-11T12:45:00Z",
+      "status": "COMPLETED",
       "customer": {
         "id": 4,
         "name": "Ana Costa",
@@ -356,87 +364,100 @@
     {
       "id": "1",
       "name": "Pizza Margherita",
-      "price": 32
+      "price": 32,
+      "description": "A classic pizza topped with cheese and tomato sauce.",
+      "imageUrl": "https://media01.stockfood.com/largepreviews/MzQ2MTY2OTU2/11166676-Veggie-Pizza-Sliced-Once-on-a-White-Background.jpg"
     },
     {
       "id": "2",
       "name": "Coca-Cola 2L",
-      "price": 15
+      "price": 15,
+      "description": "A refreshing 2-liter bottle of Coca-Cola, perfect for sharing.",
+      "imageUrl": "https://static.paodeacucar.com/img/uploads/1/120/24982120.png"
     },
     {
       "id": "3",
-      "name": "Sorvete de Chocolate",
-      "price": 8.9
+      "name": "Chocolate Ice Cream",
+      "price": 8.9,
+      "description": "A creamy and rich chocolate ice cream to satisfy your sweet cravings.",
+      "imageUrl": "https://clubedosorvete.vteximg.com.br/arquivos/ids/157217/Nestle%E2%95%A0u-Trad-Chocolate-8x15L_appeal_1000px.png?v=637871049259570000"
     },
     {
       "id": "4",
-      "name": "Hambúrguer",
-      "price": 28.9
+      "name": "Hamburger",
+      "price": 28.9,
+      "description": "A juicy hamburger with a grilled patty, served with your favorite toppings.",
+      "imageUrl": "https://img.freepik.com/fotos-gratis/hamburguer-delicioso-isolado-no-fundo-branco_125540-3368.jpg"
     },
     {
       "id": "5",
-      "name": "Batata Frita",
-      "price": 18.75
+      "name": "French Fries",
+      "price": 18.75,
+      "description": "Crispy and golden French fries, perfect as a side or snack.",
+      "imageUrl": "https://cdn.britannica.com/34/206334-050-7637EB66/French-fries.jpg"
     },
     {
       "id": "6",
-      "name": "Refrigerante",
-      "price": 8.6
+      "name": "Soft Drink",
+      "price": 8.6,
+      "description": "A refreshing and fizzy soft drink to pair with your meal.",
+      "imageUrl": "https://ibassets.com.br/ib.item.image.big/b-e41b3eb475e34f02aded67835cacab01.jpeg"
     },
     {
       "id": "7",
       "name": "Sushi Combo",
-      "price": 32.99
+      "price": 32.99,
+      "description": "A selection of fresh sushi rolls, ideal for sushi lovers.",
+      "imageUrl": "https://lh3.googleusercontent.com/proxy/H7y_loaUAQjXGto_o_oIbeHA0W28t5N63zxcDUqhj935uwbaNmMNcLpxK3wLtrlrivTCYgMaJn8bPvo5NbdBnvuC7GV42poOXz3JrMN_oYfiy2tzBdTmbj0PYPTfdmYn6qys4Wg7aqETZd7UESoo9buBB8UZCw"
     },
     {
       "id": "8",
       "name": "Green Tea",
-      "price": 12.5
+      "price": 12.5,
+      "description": "A healthy and refreshing cup of green tea.",
+      "imageUrl": "https://assets.unileversolutions.com/v1/103308340.png"
     },
     {
       "id": "9",
       "name": "Mochi",
-      "price": 16.99
+      "price": 16.99,
+      "description": "A sweet and chewy Japanese rice cake filled with delicious flavors.",
+      "imageUrl": "https://img.freepik.com/premium-photo/daifuku-mochi-japanese-dessert-plate-isolated-white-background_147493-1393.jpg?w=1060"
     },
     {
       "id": "10",
       "name": "Spaghetti Carbonara",
-      "price": 28.9
+      "price": 28.9,
+      "description": "A creamy pasta dish with pancetta, cheese, and eggs.",
+      "imageUrl": "https://st4.depositphotos.com/10614052/38883/i/450/depositphotos_388837368-stock-photo-plate-tasty-pasta-carbonara-white.jpg"
     },
     {
       "id": "11",
       "name": "Garlic Bread",
-      "price": 11.5
+      "price": 11.5,
+      "description": "Warm and crispy garlic bread, perfect as a side dish.",
+      "imageUrl": "https://img.freepik.com/free-photo/photo-garlic-bread-slice-isolated-white-background_125540-3899.jpg"
     },
     {
       "id": "12",
       "name": "Tiramisu",
-      "price": 15.99
+      "price": 15.99,
+      "description": "A classic Italian dessert made with layers of mascarpone, coffee, and cocoa.",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/026/516/970/large_2x/delicious-tiramisu-isolated-on-white-background-free-photo.jpg"
     },
     {
       "id": "13",
       "name": "Chicken Burger",
-      "price": 26
+      "price": 26,
+      "description": "A crispy chicken burger served with fresh lettuce and sauce.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN9wafpoeKTwswKprFzKX_bKEH222E3mROhw&s"
     },
     {
       "id": "14",
-      "name": "French Fries",
-      "price": 21
-    },
-    {
-      "id": "15",
       "name": "Milkshake",
-      "price": 12
-    },
-    {
-      "id": "49ba",
-      "name": "Teste",
-      "price": 16
-    },
-    {
-      "id": "ad9c",
-      "name": "Teste",
-      "price": 16.36
+      "price": 12,
+      "description": "A thick and creamy milkshake, available in various flavors.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLF6bA_CF2LXoG0CpmpK1OJqUeb0cUKR_Bxg&s"
     }
   ]
 }
