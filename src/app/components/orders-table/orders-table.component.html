@@ -3,38 +3,36 @@
   <p-table
     [value]="orders"
     [paginator]="true"
-    [rows]="5"
+    [rows]="10"
     [tableStyle]="{ 'min-width': '25rem' }"
+    styleClass="p-datatable-sm"
   >
     <ng-template pTemplate="header">
       <tr>
-        <th>Id</th>
+        <th class="text-center">Id</th>
         <th>Date</th>
         <th>Customer</th>
         <th>Restaurant</th>
         <th class="text-center">Status</th>
-        <th>Total</th>
+        <th class="text-right">Total</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
       <tr>
-        <td>{{ order.id }}</td>
+        <td class="text-center">{{ order.id }}</td>
         <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
         <td>{{ order.customer.name }}</td>
         <td>{{ order.restaurant.name }}</td>
         <td class="text-center">
-          <p-button
-            size="small"
-            [label]="order.status | capitalize"
-            icon="pi pi-check"
-            class="p-button-secondary"
-            [disabled]="true"
-            [severity]="getStatusSeverity(order.status)"
-            [icon]="getStatusIcon(order.status)"
+          <span
+            [ngClass]="getStatusSeverity(order.status)"
+            class="inline-flex align-items-center justify-content-center text-700 px-3 py-1 border-round-lg text-xs"
           >
-          </p-button>
+            <i [class]="getStatusIcon(order.status)">&nbsp;</i>
+            {{ order.status | capitalize }}
+          </span>
         </td>
-        <td>
+        <td class="text-right">
           {{ order.total | currency : "USD" : "symbol" : "1.2-2" }}
         </td>
       </tr>

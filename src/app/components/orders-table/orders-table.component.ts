@@ -57,16 +57,16 @@ export class OrdersTableComponent implements OnInit {
     }
   }
 
-  getStatusSeverity(status: string): 'success' | 'warning' | 'danger' | 'secondary' {
+  getStatusSeverity(status: string): string {
     switch (status) {
       case 'COMPLETED':
-        return 'success';
-      case 'CANCELLED':
-        return 'danger';
+        return 'bg-green-200';
       case 'PENDING':
-        return 'warning';
+        return 'bg-yellow-200';
+      case 'CANCELLED':
+        return 'bg-red-200';
       default:
-        return 'secondary';
+        return 'status-unknown';
     }
   }
 }
