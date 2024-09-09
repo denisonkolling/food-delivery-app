@@ -9,12 +9,15 @@ import { CustomerService } from '../../services/customer.service';
 import { RestaurantService } from '../../services/restaurant.service';
 import { ProductService } from '../../services/product.service';
 import { REGEX } from '../../shared/constants/regex.constants';
+import { OrderService } from '../../services/order.service';
+import { ActivatedRoute } from '@angular/router';
+import { Order } from '../../interfaces/order.interface';
 
 @Component({
   selector: 'app-order-create-v2',
   standalone: true,
   imports: [ButtonModule, InputTextModule, TableModule, LayoutComponent, CommonModule, ReactiveFormsModule],
-  providers: [CustomerService, RestaurantService, ProductService],
+  providers: [CustomerService, RestaurantService, ProductService, OrderService],
   templateUrl: './order-create-table.component.html',
   styleUrl: './order-create-table.component.css'
 })
@@ -27,10 +30,13 @@ export class OrderCreateV2Component {
     private customerService: CustomerService,
     private restaurantService: RestaurantService,
     private productService: ProductService,
+    private orderService: OrderService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      id: [null],
       customer: [null, Validators.required],
       customerName: [{ value: '', disabled: true }],
       restaurant: [null, Validators.required],
@@ -40,6 +46,14 @@ export class OrderCreateV2Component {
       productName: [{ value: '', disabled: true }],
       productPrice: [{ value: '', disabled: true }],
       items: this.fb.array([]),
+      status: ['']
+    });
+
+    this.route.paramMap.subscribe((params) => {
+      const orderId = Number(params.get('id'));
+      if (orderId) {
+        this.loadOrder(orderId);
+      }
     });
 
     this.onChanges();
@@ -94,6 +108,10 @@ export class OrderCreateV2Component {
     return this.form.controls['productQuantity']
   }
 
+  get orderStatus() {
+    return this.form.get('status')?.value
+  }
+
   addItem(): void {
 
     if (this.form.get('product')?.valid && this.form.get('productQuantity')?.valid) {
@@ -139,4 +157,54 @@ export class OrderCreateV2Component {
     console.log(this.form.value);
   }
 
+
+  setOrderItems(items: any[]) {
+    const itemsFormArray = this.form.get('items') as FormArray;
+
+    itemsFormArray.clear();
+
+    items.forEach(item => {
+
+      const itemGroup = this.fb.group({
+        id: [item.id],
+        price: [item.price],
+        quantity: [item.quantity, Validators.required],
+        product: this.fb.group({
+          id: [item.product.id],
+          name: [item.product.name]
+        })
+      });
+
+      itemsFormArray.push(itemGroup);
+
+    });
+
+    this.form.updateValueAndValidity();
+
+  }
+
+  loadOrder(orderId: number) {
+    this.orderService.findOrderById(orderId).subscribe({
+      next: (order: Order) => {
+        console.log('Order Service Data Received', order);
+        this.form.patchValue({
+          id: order.id,
+          customer: order.customer.id,
+          restaurant: order.restaurant.id,
+          status: order.status,
+          total: order.total,
+          createdAt: order.createdAt,
+        });
+
+        this.form.get('customerName')?.setValue(order.customer.name);
+        this.form.get('restaurantName')?.setValue(order.restaurant.name);
+
+        this.setOrderItems(order.items);
+
+      },
+      error: (err) => {
+        console.error('Error loading order:', err);
+      }
+    });
+  }
 }

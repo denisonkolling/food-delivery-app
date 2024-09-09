@@ -67,6 +67,11 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'orders/edit/:id',
+        component: OrderCreateV2Component,
+        canActivate: [authGuard]
+    },
+    {
         path: '', redirectTo: 'home', pathMatch: 'full'
     }
 ];

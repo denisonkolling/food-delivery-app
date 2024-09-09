@@ -1,7 +1,10 @@
 <app-layout>
   <div class="border-1 border-round p-4 border-300">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="text-2xl font-bold text-center m-4">Create New Order</div>
+      <div class="text-2xl font-bold text-center m-4">
+        Delivery Order
+        {{ form.get("id")?.value ? "N° " + form.get("id")?.value : " " }}
+      </div>
 
       <!-- Linha para Customer e Restaurant -->
       <div class="grid">
@@ -73,8 +76,22 @@
         </div>
       </div>
 
+      <div *ngIf="orderStatus === 'COMPLETED'">
+        <h3 class="text-center text-green-400 mb-5">Order Alredy Done!</h3>
+      </div>
+
+      <div *ngIf="orderStatus === 'CANCELLED'">
+        <h3 class="text-center text-red-400 mb-5">Order Cancelled!</h3>
+      </div>
+
       <!-- Linha para as informações do produto -->
-      <div class="grid">
+      <div
+        class="grid"
+        *ngIf="
+          orderStatus === 'PENDING' ||
+          (orderStatus !== 'CANCELLED' && orderStatus !== 'COMPLETED')
+        "
+      >
         <div class="field col-2">
           <label for="product">
             <i class="pi pi-search mr-1"></i>
@@ -153,7 +170,7 @@
               <th>Quantity</th>
               <th>Unit Price</th>
               <th>Sub Total</th>
-              <th>Actions</th>
+              <th class="text-center">Actions</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
@@ -162,13 +179,11 @@
               <td>{{ rowData.quantity }}</td>
               <td>{{ rowData.price | currency }}</td>
               <td>{{ rowData.price * rowData.quantity | currency }}</td>
-              <td>
-                <button
+              <td class="text-center">
+                <i
+                  class="pi pi-trash mx-2 hover:text-400 cursor-pointer"
                   (click)="removeProduct(rowIndex)"
-                  pButton
-                  icon="pi pi-trash"
-                  class="p-button-danger"
-                ></button>
+                ></i>
               </td>
             </tr>
           </ng-template>
