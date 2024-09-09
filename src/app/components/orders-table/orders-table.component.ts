@@ -5,7 +5,7 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 @Component({
@@ -20,7 +20,10 @@ export class OrdersTableComponent implements OnInit {
 
   orders: Order[] = [];
 
-  constructor(private orderService: OrderService) { }
+  constructor(
+    private orderService: OrderService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.orderService.findAllOrders().subscribe({
@@ -68,5 +71,18 @@ export class OrdersTableComponent implements OnInit {
       default:
         return 'status-unknown';
     }
+  }
+
+  removeOrder(index: number) {
+    if (index >= 0 && index < this.orders.length) {
+      this.orders.splice(index, 1);
+    } else {
+      console.error('Index out of bounds');
+    }
+  }
+
+  editOrder(index: number) {
+    const order = this.orders[index];
+    this.router.navigate((['/orders/edit', order.id]));
   }
 }

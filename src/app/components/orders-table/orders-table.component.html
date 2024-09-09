@@ -15,9 +15,10 @@
         <th>Restaurant</th>
         <th class="text-center">Status</th>
         <th class="text-right">Total</th>
+        <th class="text-center">Actions</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-order>
+    <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
       <tr>
         <td class="text-center">{{ order.id }}</td>
         <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
@@ -34,6 +35,20 @@
         </td>
         <td class="text-right">
           {{ order.total | currency : "USD" : "symbol" : "1.2-2" }}
+        </td>
+        <td class="text-center">
+          <i
+            class="pi pi-eye mx-2 hover:text-400 cursor-pointer"
+            (click)="editOrder(rowIndex)"
+          ></i>
+          <i
+            class="pi pi-pen-to-square mx-2 hover:text-400 cursor-pointer"
+            (click)="editOrder(rowIndex)"
+          ></i>
+          <i
+            class="pi pi-times mx-2 hover:text-400 cursor-pointer"
+            (click)="removeOrder(rowIndex)"
+          ></i>
         </td>
       </tr>
     </ng-template>
