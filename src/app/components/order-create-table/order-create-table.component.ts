@@ -47,7 +47,7 @@ export class OrderCreateV2Component {
       productName: [{ value: '', disabled: true }],
       productPrice: [{ value: '', disabled: true }],
       items: this.fb.array([]),
-      status: ['PENDING']
+      status: ['']
     });
 
     this.route.paramMap.subscribe((params) => {
@@ -210,7 +210,8 @@ export class OrderCreateV2Component {
   }
 
   canModifyOrder(): boolean {
-    return this.orderStatus === OrderStatus.PENDING
+    return this.orderStatus === OrderStatus.PENDING ||
+      this.orderStatus === '';
   }
 
   isOrderCancelledOrCompleted(): boolean {

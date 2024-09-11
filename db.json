@@ -1,20 +1,20 @@
 {
   "users": [
     {
-      "id": "49a2",
+      "id": "1",
       "fullName": "John Doe",
       "email": "john@gmail.com",
       "password": "John@123",
       "photo": "https://img.freepik.com/free-photo/medium-shot-happy-man-smiling_23-2148221808.jpg?size=626&ext=jpg"
     },
     {
-      "id": "c3dd",
+      "id": "2",
       "fullName": "DENISON PERIN KOLLING",
       "email": "denisonkolling@gmail.com",
       "password": "Teste@teste1234"
     },
     {
-      "id": "7b91",
+      "id": "3",
       "fullName": "Amanda Forster",
       "email": "amanda@gmail.com",
       "password": "Amanda@2024"
@@ -24,6 +24,36 @@
     {
       "id": "1",
       "name": "John Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    },
+    {
+      "id": "2",
+      "name": "John 2 Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    },
+    {
+      "id": "3",
+      "name": "John 3 Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    },
+    {
+      "id": "4",
+      "name": "John 4 Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    },
+    {
+      "id": "5",
+      "name": "John 5 Doe",
+      "email": "john@gmail.com",
+      "password": "John@123"
+    },
+    {
+      "id": "6",
+      "name": "John 6 Doe",
       "email": "john@gmail.com",
       "password": "John@123"
     }
@@ -142,7 +172,7 @@
     {
       "id": "3",
       "createdAt": "2024-06-11T10:15:30Z",
-      "status": "CANCELED",
+      "status": "CANCELLED",
       "customer": {
         "id": 3,
         "name": "Carlos Pereira",
