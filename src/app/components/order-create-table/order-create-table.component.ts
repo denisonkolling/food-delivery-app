@@ -12,6 +12,7 @@ import { REGEX } from '../../shared/constants/regex.constants';
 import { OrderService } from '../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../interfaces/order.interface';
+import { OrderStatus } from '../../enums/order-status.enum';
 
 @Component({
   selector: 'app-order-create-v2',
@@ -46,7 +47,7 @@ export class OrderCreateV2Component {
       productName: [{ value: '', disabled: true }],
       productPrice: [{ value: '', disabled: true }],
       items: this.fb.array([]),
-      status: ['']
+      status: ['PENDING']
     });
 
     this.route.paramMap.subscribe((params) => {
@@ -206,5 +207,13 @@ export class OrderCreateV2Component {
         console.error('Error loading order:', err);
       }
     });
+  }
+
+  canModifyOrder(): boolean {
+    return this.orderStatus === OrderStatus.PENDING
+  }
+
+  isOrderCancelledOrCompleted(): boolean {
+    return [OrderStatus.CANCELLED, OrderStatus.COMPLETED].includes(this.orderStatus);
   }
 }
