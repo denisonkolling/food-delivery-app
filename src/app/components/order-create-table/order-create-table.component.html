@@ -19,6 +19,7 @@
             formControlName="customer"
             class="w-full"
             name="customer"
+            [readonly]="!canModifyOrder()"
           />
           <small
             *ngIf="customer.invalid && (customer.dirty || customer.touched)"
@@ -51,6 +52,7 @@
             formControlName="restaurant"
             class="w-full"
             name="restaurant"
+            [readonly]="!canModifyOrder()"
           />
           <small
             *ngIf="
@@ -76,22 +78,8 @@
         </div>
       </div>
 
-      <div *ngIf="orderStatus === 'COMPLETED'">
-        <h3 class="text-center text-green-400 mb-5">Order Alredy Done!</h3>
-      </div>
-
-      <div *ngIf="orderStatus === 'CANCELLED'">
-        <h3 class="text-center text-red-400 mb-5">Order Cancelled!</h3>
-      </div>
-
       <!-- Linha para as informações do produto -->
-      <div
-        class="grid"
-        *ngIf="
-          orderStatus === 'PENDING' ||
-          (orderStatus !== 'CANCELLED' && orderStatus !== 'COMPLETED')
-        "
-      >
+      <div class="grid" *ngIf="canModifyOrder()">
         <div class="field col-2">
           <label for="product">
             <i class="pi pi-search mr-1"></i>
@@ -181,6 +169,7 @@
               <td>{{ rowData.price * rowData.quantity | currency }}</td>
               <td class="text-center">
                 <i
+                  *ngIf="canModifyOrder()"
                   class="pi pi-trash mx-2 hover:text-400 cursor-pointer"
                   (click)="removeProduct(rowIndex)"
                 ></i>
@@ -196,20 +185,55 @@
           </ng-template>
         </p-table>
       </div>
-      <div class="flex justify-content-end mt-2">
-        <p-button
-          label="Save Order"
-          icon="pi pi-check"
-          class="m-2"
-          type="submit"
-        ></p-button>
-        <p-button
-          label="Cancel"
-          icon="pi pi-times"
-          class="m-2"
-          severity="secondary"
-          type="button"
-        ></p-button>
+
+      <div
+        class="flex align-items-center justify-content-end"
+        *ngIf="canModifyOrder()"
+      >
+        <div class="flex justify-content-end mt-2">
+          <p-button
+            label="Save Order"
+            icon="pi pi-check"
+            class="m-2"
+            type="submit"
+          ></p-button>
+          <p-button
+            label="Cancel"
+            icon="pi pi-times"
+            class="m-2"
+            severity="secondary"
+            type="button"
+          ></p-button>
+        </div>
+      </div>
+
+      <!-- Cartão de status da ordem -->
+      <div class="card p-2 border-round" *ngIf="orderStatus">
+        <ng-container [ngSwitch]="orderStatus">
+          <div
+            *ngSwitchCase="'COMPLETED'"
+            class="flex flex-column align-items-center custom-card text-green-200 border-1 border-round p-4 bg-green-100"
+          >
+            <i class="pi pi-check-circle text-green-500 text-4xl mt-2"></i>
+            <h3 class="text-center text-green-500">Order Completed</h3>
+          </div>
+
+          <div
+            *ngSwitchCase="'CANCELLED'"
+            class="flex flex-column align-items-center custom-card text-red-200 border-1 border-round p-4 bg-red-100"
+          >
+            <i class="pi pi-times-circle text-red-400 text-4xl mt-2"></i>
+            <h3 class="text-center text-red-400">Order Cancelled</h3>
+          </div>
+
+          <div
+            *ngSwitchDefault
+            class="flex flex-column align-items-center custom-card text-yellow-200 border-1 border-round p-4 bg-yellow-100"
+          >
+            <i class="pi pi-info-circle text-yellow-400 text-4xl mt-2"></i>
+            <h3 class="text-center text-yellow-400">Order Pending</h3>
+          </div>
+        </ng-container>
       </div>
     </form>
   </div>
