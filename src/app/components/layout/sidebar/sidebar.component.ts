@@ -33,9 +33,9 @@ export class SidebarComponent {
         icon: 'pi pi-fw pi-shopping-cart',
         items: [
           { label: 'All Orders', icon: 'pi pi-fw pi-list', routerLink: ['/orders'] },
-          { label: 'Pending Orders', icon: 'pi pi-fw pi-clock', routerLink: ['/orders/pending'] },
-          { label: 'Completed Orders', icon: 'pi pi-fw pi-check', routerLink: ['/orders/completed'] },
-          { label: 'Cancelled Orders', icon: 'pi pi-fw pi-times', routerLink: ['/orders/cancelled'] }
+          { label: 'Pending Orders', icon: 'pi pi-fw pi-clock', routerLink: ['/orders/status/pending'] },
+          { label: 'Completed Orders', icon: 'pi pi-fw pi-check', routerLink: ['/orders/status/completed'] },
+          { label: 'Cancelled Orders', icon: 'pi pi-fw pi-times', routerLink: ['/orders/status/cancelled'] }
         ]
       },
       {

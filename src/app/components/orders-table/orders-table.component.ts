@@ -5,7 +5,7 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 @Component({
@@ -20,16 +20,21 @@ export class OrdersTableComponent implements OnInit {
 
   orders: Order[] = [];
 
+  filteredOrders: Order[] = [];
+
   constructor(
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+
     this.orderService.findAllOrders().subscribe({
       next: (data) => {
         if (data) {
           this.orders = this.processOrders(data);
+          this.applyFilterFromRoute();
         } else {
           console.error('No data received');
         }
@@ -38,7 +43,12 @@ export class OrdersTableComponent implements OnInit {
         console.error('Error fetching orders:', error);
       }
     });
+
+    this.route.paramMap.subscribe(() => {
+      this.applyFilterFromRoute();
+    });
   }
+
 
   private processOrders(orders: Order[]): Order[] {
     return orders.map(order => ({
@@ -85,4 +95,18 @@ export class OrdersTableComponent implements OnInit {
     const order = this.orders[index];
     this.router.navigate((['/orders/edit', order.id]));
   }
+
+  filterOrdersByStatus(status: string) {
+    return this.orders.filter(order => order.status === status.toUpperCase());
+  }
+
+  private applyFilterFromRoute() {
+    const status = this.route.snapshot.paramMap.get('status');
+    if (status) {
+      this.filteredOrders = this.filterOrdersByStatus(status);
+    } else {
+      this.filteredOrders = this.orders;
+    }
+  }
+
 }

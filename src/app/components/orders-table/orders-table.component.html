@@ -1,7 +1,7 @@
 <div class="border-1 border-round p-4 border-300">
   <div class="text-2xl font-bold text-center m-4">All Orders</div>
   <p-table
-    [value]="orders"
+    [value]="filteredOrders"
     [paginator]="true"
     [rows]="10"
     [tableStyle]="{ 'min-width': '25rem' }"

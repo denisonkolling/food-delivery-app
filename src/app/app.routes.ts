@@ -32,6 +32,16 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'orders/status/:status',
+        component: OrdersComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'orders/create-new',
+        component: OrderCreateV2Component,
+        canActivate: [authGuard]
+    },
+    {
         path: 'dashboard/overview',
         component: DashboardComponent,
         canActivate: [authGuard]
@@ -54,11 +64,6 @@ export const routes: Routes = [
     {
         path: 'drivers',
         component: DriversComponent,
-        canActivate: [authGuard]
-    },
-    {
-        path: 'orders/create-new',
-        component: OrderCreateV2Component,
         canActivate: [authGuard]
     },
     {
