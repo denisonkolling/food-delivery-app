@@ -1,11 +1,7 @@
 <p-card styleClass="w-15rem border-1 border-200">
   <ng-template pTemplate="header">
     <div class="w-full h-10rem overflow-hidden mb-2">
-      <img
-        alt="Product Image"
-        [src]="product.imageUrl"
-        class="w-full h-full"
-      />
+      <img alt="Product Image" [src]="product.imageUrl" class="w-full h-full" />
     </div>
   </ng-template>
 
@@ -20,23 +16,4 @@
     {{ product.description }}
   </p>
   <h3 class="mt-2 mb-0">{{ product.price | currency : "USD" }}</h3>
-
-  <ng-template pTemplate="footer">
-    <div class="flex justify-content-center gap-2">
-      <p-button
-        label="Add"
-        icon="pi pi-shopping-cart"
-        class="w-full"
-        (onClick)="addToCart(product)"
-        size="small"
-      ></p-button>
-      <p-button
-        label="Details"
-        icon="pi pi-info-circle"
-        class="w-full"
-        size="small"
-        (onClick)="viewDetails(product)"
-      ></p-button>
-    </div>
-  </ng-template>
 </p-card>

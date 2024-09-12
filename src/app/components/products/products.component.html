@@ -1,8 +1,37 @@
 <app-layout>
   <div class="flex flex-wrap gap-4 justify-content-center align-items-center">
     <app-product-card
+      class="cursor-pointer"
       *ngFor="let product of products"
       [product]="product"
+      (click)="showDialog(product)"
     ></app-product-card>
   </div>
+
+  <p-dialog
+    header="Product Details"
+    [(visible)]="visible"
+    [modal]="true"
+    [responsive]="true"
+    [style]="{ width: '50vw' }"
+    (onHide)="closeDialog()"
+  >
+    <ng-container *ngIf="selectedProduct">
+      <div class="mb-3 flex align-content-center justify-content-center">
+        <img
+          alt="Product Image"
+          [src]="selectedProduct.imageUrl"
+          class="w-20rem"
+        />
+      </div>
+
+      <div class="p-3">
+        <h2 class="text-bold mb-2">{{ selectedProduct.name }}</h2>
+        <p class="mb-2">{{ selectedProduct.description }}</p>
+        <h3 class="text-primary">
+          {{ selectedProduct.price | currency : "USD" }}
+        </h3>
+      </div>
+    </ng-container>
+  </p-dialog>
 </app-layout>

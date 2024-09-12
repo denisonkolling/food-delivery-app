@@ -5,11 +5,12 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product.interface';
 import { CommonEngine } from '@angular/ssr';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [LayoutComponent, ProductCardComponent, CommonModule],
+  imports: [LayoutComponent, ProductCardComponent, CommonModule, DialogModule],
   providers: [ProductService],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -18,6 +19,8 @@ export class ProductsComponent implements OnInit {
 
   @Output()
   products: Product[] = [];
+  visible: boolean = false;
+  selectedProduct!: Product;
 
   constructor(private productService: ProductService) { }
 
@@ -25,6 +28,15 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (data) => this.products = data || []
     );
+  }
+
+  showDialog(product: Product) {
+    this.selectedProduct = product;
+    this.visible = true;
+  }
+
+  closeDialog() {
+    this.visible = false;
   }
 
 
