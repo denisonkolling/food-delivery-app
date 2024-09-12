@@ -85,14 +85,14 @@ export class OrdersTableComponent implements OnInit {
 
   removeOrder(index: number) {
     if (index >= 0 && index < this.orders.length) {
-      this.orders.splice(index, 1);
+      this.filteredOrders.splice(index, 1);
     } else {
       console.error('Index out of bounds');
     }
   }
 
   editOrder(index: number) {
-    const order = this.orders[index];
+    const order = this.filteredOrders[index];
     this.router.navigate((['/orders/edit', order.id]));
   }
 
