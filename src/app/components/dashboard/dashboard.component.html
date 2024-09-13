@@ -1,1 +1,59 @@
-<app-layout></app-layout>
+<app-layout>
+  <div class="grid m-1 gap-1">
+    <div class="lg:col-3 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+      <div class="flex flex-column">
+        <h6 class="text-center text-2xl my-0 text-700">Total Orders</h6>
+        <p-chart
+          type="line"
+          [data]="dataLineChart"
+          [options]="optionsLineChart"
+        />
+      </div>
+      <div class="bg-black-alpha-10 bg-gray-50"></div>
+    </div>
+    <div class="lg:col-2 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+      <div class="flex flex-column justify-content-center">
+        <h6 class="text-center text-2xl my-0 text-700">Sales Region</h6>
+        <p-chart
+          type="doughnut"
+          [data]="dataDonutChart"
+          [options]="optionsDonutChart"
+        />
+      </div>
+    </div>
+    <div class="lg:col-6 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+      <div>
+        <h6 class="text-center text-2xl my-0 text-700">Main Orders</h6>
+        <p-table
+          [value]="orders"
+          class="p-datatable-striped p-datatable-gridlines"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th><i class="pi pi-user mr-2"></i> Customer</th>
+              <th><i class="pi pi-calendar mr-2"></i> Date</th>
+              <th><i class="pi pi-dollar mr-2"></i> Value</th>
+              <th><i class="pi pi-list mr-2"></i> Items Quantity</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-order>
+            <tr>
+              <td>{{ order.customer }}</td>
+              <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
+              <td>{{ order.value | currency : "USD" }}</td>
+              <td>{{ order.itemsQuantity }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  <div class="grid m-1">
+    <div class="col-11 border-1 border-200 border-round bg-gray-100">
+      <div class="flex flex-column">
+        <h6 class="text-center text-2xl my-0 text-700">Revenue</h6>
+        <p-chart type="bar" [data]="dataBarChart" [options]="optionsBarChart" />
+      </div>
+    </div>
+  </div>
+</app-layout>
