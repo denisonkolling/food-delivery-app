@@ -1,29 +1,54 @@
 <app-layout>
   <div class="grid m-1 gap-1">
-    <div class="lg:col-3 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+    <!-- Total Orders Chart -->
+    <div class="lg:col-3 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100 p-2">
       <div class="flex flex-column">
-        <h6 class="text-center text-2xl my-0 text-700">Total Orders</h6>
+        <div class="flex align-items-center justify-content-between mb-2">
+          <h6 class="text-center text-2xl my-0 text-700">
+            <i class="pi pi-calendar mr-2"></i> Total Orders
+          </h6>
+          <a href="#" class="text-blue-500 hover:text-blue-700">View Details</a>
+        </div>
         <p-chart
           type="line"
           [data]="dataLineChart"
           [options]="optionsLineChart"
         />
+        <div class="flex justify-content-end mt-2">
+          <button pButton type="button" label="More Info" size="small" icon="pi pi-info-circle" class="p-button-outlined"></button>
+        </div>
       </div>
-      <div class="bg-black-alpha-10 bg-gray-50"></div>
     </div>
-    <div class="lg:col-2 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+
+    <!-- Sales Region Chart -->
+    <div class="lg:col-2 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100 p-2">
       <div class="flex flex-column justify-content-center">
-        <h6 class="text-center text-2xl my-0 text-700">Sales Region</h6>
+        <div class="flex align-items-center justify-content-between mb-2">
+          <h6 class="text-center text-2xl my-0 text-700">
+            <i class="pi pi-map-marker mr-2"></i> Sales Region
+          </h6>
+          <a href="#" class="text-blue-500 hover:text-blue-700">View Details</a>
+        </div>
         <p-chart
           type="doughnut"
           [data]="dataDonutChart"
           [options]="optionsDonutChart"
         />
+        <div class="flex justify-content-end mt-2">
+          <button pButton type="button" label="More Info" size="small" icon="pi pi-info-circle" class="p-button-outlined"></button>
+        </div>
       </div>
     </div>
-    <div class="lg:col-6 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100">
+
+    <!-- Main Orders Table -->
+    <div class="lg:col-6 md:col-12 sm:col-12 border-1 border-200 border-round bg-gray-100 p-2">
       <div>
-        <h6 class="text-center text-2xl my-0 text-700">Main Orders</h6>
+        <div class="flex align-items-center justify-content-between mb-2">
+          <h6 class="text-center text-2xl my-0 text-700">
+            <i class="pi pi-list mr-2"></i> Main Orders
+          </h6>
+          <a href="#" class="text-blue-500 hover:text-blue-700">Export</a>
+        </div>
         <p-table
           [value]="orders"
           class="p-datatable-striped p-datatable-gridlines"
@@ -48,11 +73,21 @@
       </div>
     </div>
   </div>
+
+  <!-- Revenue Bar Chart -->
   <div class="grid m-1">
-    <div class="col-11 border-1 border-200 border-round bg-gray-100">
+    <div class="col-11 border-1 border-200 border-round bg-gray-100 p-2">
       <div class="flex flex-column">
-        <h6 class="text-center text-2xl my-0 text-700">Revenue</h6>
-        <p-chart type="bar" [data]="dataBarChart" [options]="optionsBarChart" />
+        <div class="flex align-items-center justify-content-between mb-2">
+          <h6 class="text-center text-2xl my-0 text-700">
+            <i class="pi pi-money-bill mr-2"></i> Revenue
+          </h6>
+          <a href="#" class="text-blue-500 hover:text-blue-700">View Details</a>
+        </div>
+        <p-chart type="bar" [data]="dataBarChart" [options]="optionsBarChart"/>
+        <div class="flex justify-content-end mt-2">
+          <button pButton type="button" label="More Info" size="small" icon="pi pi-info-circle" class="p-button-outlined"></button>
+        </div>
       </div>
     </div>
   </div>
