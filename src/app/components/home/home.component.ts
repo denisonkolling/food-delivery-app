@@ -6,11 +6,13 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from '../layout/layout.component';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [ButtonModule, HeaderComponent, SidebarComponent, FooterComponent, RouterOutlet, LayoutComponent],
+  providers: [AuthService, TokenService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -21,7 +23,7 @@ export class HomeComponent {
   ) { }
 
   logout() {
-    this.authService.logoutUser();
+    this.authService.logout();
   }
 
 }

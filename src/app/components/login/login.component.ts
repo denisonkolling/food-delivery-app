@@ -8,12 +8,13 @@ import { Router, RouterModule } from '@angular/router';
 import { REGEX } from '../../shared/constants/regex.constants';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
-
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CardModule, InputTextModule, ReactiveFormsModule, ButtonModule, CommonModule, RouterModule],
+  providers: [AuthService, TokenService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -48,23 +49,24 @@ export class LoginComponent {
 
 
   loginUser() {
-    const { email, password } = this.loginForm.value;
-    this.authService.getUserByEmail(email as string).subscribe(
-      response => {
-        if (response.length > 0 && response[0].password === password) {
-          sessionStorage.setItem('email', email as string);
-          sessionStorage.setItem('name', response[0].fullName as string);
-          sessionStorage.setItem('photo', response[0].photo as string);
-          this.router.navigate(['/home']);
-        } else {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email or password is wrong' });
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(
+        response => {
+          if (response && response.access_token) {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful' });
+            this.router.navigate(['/home']);
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email or password is wrong' });
+          }
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
         }
-      },
-      error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
-      }
-
-    )
+      );
+    } else {
+      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Form is invalid' });
+    }
   }
 }
 

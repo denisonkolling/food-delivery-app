@@ -10,12 +10,14 @@ import { passwordMatchValidator } from '../../shared/password-match.directive';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces/auth';
 import { MessageService } from 'primeng/api';
+import { TokenService } from '../../services/token.service';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [CardModule, InputTextModule, ReactiveFormsModule, ButtonModule, CommonModule, RouterModule],
+  providers: [AuthService, TokenService],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
