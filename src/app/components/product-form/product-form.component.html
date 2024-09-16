@@ -1,6 +1,9 @@
 <app-layout>
-  <div>
-    <p-card header="Create Product" styleClass="border-1 border-200">
+  <div class="flex justify-content-center">
+    <p-card
+      header="Create Product"
+      styleClass="border-1 border-200 md:col-9 sm:col-12"
+    >
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="field">
           <label for="name">Name</label>
@@ -10,7 +13,7 @@
             formControlName="name"
             class="w-full"
             name="name"
-            placeholder="Type the product name"
+            placeholder="Enter the product name"
           />
           <small
             *ngIf="name.invalid && (name.dirty || name.touched)"
@@ -23,29 +26,119 @@
           </small>
         </div>
         <div class="field">
-          <label for="price">Price</label>
+          <label for="descriptio">Description</label>
           <input
             type="text"
             pInputText
-            formControlName="price"
+            formControlName="description"
             class="w-full"
-            name="price"
-            placeholder="Enter the product price"
-            (blur)="formatCurrency()"
+            name="description"
+            placeholder="Enter the product description"
           />
           <small
             *ngIf="
-              productForm.get('price')?.invalid &&
-              (productForm.get('price')?.dirty ||
-                productForm.get('price')?.touched)
+              description.invalid && (description.dirty || description.touched)
             "
             class="block p-error"
           >
-            <div *ngIf="productForm.get('price')?.errors?.['required']">
-              Price is required
+            <div *ngIf="description.errors?.['required']">
+              Description is required
             </div>
-            <div *ngIf="productForm.get('price')?.errors?.['min']">
-              Price must be at least 1
+            <div *ngIf="description.errors?.['minlength']">
+              Description should be at least 3 characters long
+            </div>
+          </small>
+        </div>
+
+        <div>
+          <div class="field">
+            <label for="price">Price</label>
+            <input
+              type="text"
+              pInputText
+              formControlName="price"
+              class="w-full"
+              name="price"
+              placeholder="Enter the product price"
+              (blur)="formatCurrency()"
+            />
+            <small
+              *ngIf="
+                productForm.get('price')?.invalid &&
+                (productForm.get('price')?.dirty ||
+                  productForm.get('price')?.touched)
+              "
+              class="block p-error"
+            >
+              <div *ngIf="productForm.get('price')?.errors?.['required']">
+                Price is required
+              </div>
+              <div *ngIf="productForm.get('price')?.errors?.['min']">
+                Price must be at least 1
+              </div>
+            </small>
+          </div>
+
+          <div class="grid">
+            <div class="field col-3">
+              <label for="restaurant">
+                <i class="pi pi-search mr-1"></i>
+                Restaurant ID
+              </label>
+              <input
+                type="number"
+                pInputText
+                formControlName="restaurant"
+                class="w-full"
+                name="restaurant"
+              />
+              <small
+                *ngIf="
+                  restaurant.invalid && (restaurant.dirty || restaurant.touched)
+                "
+                class="block p-error"
+              >
+                <div *ngIf="restaurant.errors?.['required']">
+                  Restaurant is required
+                </div>
+              </small>
+            </div>
+
+            <div class="field col-9">
+              <label for="restaurantName">Restaurant Name</label>
+              <input type="text" pInputText class="w-full" formControlName="restaurantName" readonly />
+            </div>
+          </div>
+        </div>
+
+        <div class="field w-full">
+          <label for="category" class="w-full">Category</label>
+          <p-multiSelect
+            class="w-full"
+            id="category"
+            [options]="(categories$ | async) ?? []"
+            optionLabel="name"
+            (onChange)="onCategorySelect($event)"
+            placeholder="Select category"
+          ></p-multiSelect>
+        </div>
+
+        <div class="field">
+          <label for="imageUrl">Image URL</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="imageUrl"
+            class="w-full"
+            name="imageUrl"
+            placeholder="Enter the image Url"
+          />
+          <small
+            *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="imageUrl.errors?.['required']">
+              Image Url is required
             </div>
           </small>
         </div>
@@ -70,3 +163,12 @@
     </p-card>
   </div>
 </app-layout>
+
+<!-- 
+TODO: 
+
+  
+  
+  imageUrl: string; 
+  
+-->

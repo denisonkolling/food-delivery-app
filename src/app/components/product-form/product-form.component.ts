@@ -1,30 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LayoutComponent } from '../layout/layout.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProductService } from '../../services/product.service';
 import { MessageService } from 'primeng/api';
+import { Category } from '../../interfaces/category.interface';
+import { Observable } from 'rxjs';
+import { CategoryService } from '../../services/category.service';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [LayoutComponent, CommonModule, ReactiveFormsModule, CardModule, ButtonModule, InputTextModule],
-  providers: [CurrencyPipe, ProductService],
+  imports: [LayoutComponent, CommonModule, ReactiveFormsModule, CardModule, ButtonModule, InputTextModule, MultiSelectModule],
+  providers: [CurrencyPipe, ProductService, RestaurantService],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
 
   productForm!: FormGroup;
+  categories$!: Observable<Category[]>;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private currencyPipe: CurrencyPipe, private messageService: MessageService,) {
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private currencyPipe: CurrencyPipe,
+    private messageService: MessageService,
+    private categoryService: CategoryService,
+    private restaurantService: RestaurantService,
+  ) {
+
+  }
+
+  ngOnInit(): void {
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
-      price: [1, [Validators.required, Validators.min(0.01)]],
+      description: ['', Validators.required],
+      restaurant: ['', Validators.required],
+      restaurantName: [{ value: '', disabled: true }],
+      imageUrl: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0.01)]],
+      category: this.fb.array([], Validators.required),
     });
+
+    this.categories$ = this.categoryService.getCategories();
+
+    this.onChanges();
+
   }
 
   get name() {
@@ -33,6 +61,26 @@ export class ProductFormComponent {
 
   get price() {
     return this.productForm.controls['price'];
+  }
+
+  get description() {
+    return this.productForm.controls['description'];
+  }
+
+  get restaurant() {
+    return this.productForm.controls['restaurant'];
+  }
+
+  get category() {
+    return this.productForm.controls['category'];
+  }
+
+  get imageUrl() {
+    return this.productForm.controls['imageUrl'];
+  }
+
+  get categoryArray(): FormArray {
+    return this.productForm.get('category') as FormArray;
   }
 
   onSubmit() {
@@ -45,10 +93,7 @@ export class ProductFormComponent {
 
       formData.price = parseFloat(formData.price);
 
-      this.productService.addProduct(formData).subscribe({
-        next: (response) => {
-          console.log('Produto adicionado com sucesso:', response);
-        },
+      this.productService.createProduct(formData).subscribe({
         error: (error) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error occurred while creating the product. Please try again.' });
         },
@@ -57,8 +102,6 @@ export class ProductFormComponent {
           this.productForm.reset();
         }
       });
-    } else {
-      console.log('Formulário inválido');
     }
   }
 
@@ -75,4 +118,45 @@ export class ProductFormComponent {
       this.productForm.get('price')?.setValue(formattedValue, { emitEvent: false });
     }
   }
+
+  onCategorySelect(event: any): void {
+    const selectedProducts = event.value;
+    this.categoryArray.clear();
+    selectedProducts.forEach((category: Category) => this.addCategory(category));
+  }
+
+
+  addCategory(category: any) {
+    this.categoryArray.push(this.fb.control(category.id));
+  }
+
+
+  onChanges(): void {
+    this.productForm.get('restaurant')!.valueChanges.subscribe((restaurantId) => {
+      if (restaurantId) {
+        this.restaurantService.getRestaurantById(restaurantId).subscribe({
+          next: (data) => {
+            this.productForm.patchValue({ restaurantName: data.name });
+          },
+          error: (error) => {
+            if (error.status === 404) {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Restaurant Not Found',
+                detail: `Restaurant with ID ${restaurantId} does not exist.`
+              });
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'An error occurred while fetching the restaurant. Please try again.'
+              });
+            }
+            this.productForm.patchValue({ restaurantName: null });
+          }
+        });
+      }
+    });
+  }
+
 }
