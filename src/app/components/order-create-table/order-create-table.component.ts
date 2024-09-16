@@ -13,12 +13,13 @@ import { OrderService } from '../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../interfaces/order.interface';
 import { OrderStatus } from '../../enums/order-status.enum';
+import { ErrorHandlerService } from '../../services/error-handler.service';
 
 @Component({
   selector: 'app-order-create-v2',
   standalone: true,
   imports: [ButtonModule, InputTextModule, TableModule, LayoutComponent, CommonModule, ReactiveFormsModule],
-  providers: [CustomerService, RestaurantService, ProductService, OrderService],
+  providers: [CustomerService, RestaurantService, ProductService, OrderService, ErrorHandlerService],
   templateUrl: './order-create-table.component.html',
   styleUrl: './order-create-table.component.css'
 })
@@ -33,6 +34,7 @@ export class OrderCreateV2Component {
     private productService: ProductService,
     private orderService: OrderService,
     private route: ActivatedRoute,
+    private errorHandler: ErrorHandlerService,
   ) { }
 
   ngOnInit(): void {
@@ -71,8 +73,14 @@ export class OrderCreateV2Component {
 
     this.form.get('restaurant')!.valueChanges.subscribe((restaurantId) => {
       if (restaurantId) {
-        this.restaurantService.getRestaurantById(restaurantId).subscribe((data) => {
-          this.form.patchValue({ restaurantName: data.name });
+        this.restaurantService.getRestaurantById(restaurantId).subscribe({
+          next: (data) => {
+            this.form.patchValue({ restaurantName: data.name });
+          },
+          error: (error) => {
+            this.errorHandler.handleError(error, `Restaurant with ID ${restaurantId} does not exist.`);
+            this.form.patchValue({ restaurantName: null });
+          }
         });
       }
     });
