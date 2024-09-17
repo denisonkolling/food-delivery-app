@@ -66,7 +66,7 @@ export class OrderCreateV2Component {
     this.form.get('customer')!.valueChanges.subscribe((customerId) => {
       if (customerId) {
         this.customerService.getCustomerById(customerId).subscribe((data) => {
-          this.form.patchValue({ customerName: data.name });
+          this.form.patchValue({ customerName: data.firstName + ' ' + data.lastName });
         });
       }
     });
