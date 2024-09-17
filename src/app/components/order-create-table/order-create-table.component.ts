@@ -87,12 +87,20 @@ export class OrderCreateV2Component {
 
     this.form.get('product')!.valueChanges.subscribe((productId) => {
       if (productId) {
-        this.productService.getProductById(productId).subscribe((data) => {
-          this.form.patchValue({
-            productName: data.name,
-            productPrice: data.price
-          });
-        });
+        this.productService.getProductById(productId).subscribe(
+          {
+            next: (data) => {
+              this.form.patchValue({
+                productName: data.name,
+                productPrice: data.price
+              });
+            },
+            error: (error) => {
+              this.errorHandler.handleError(error, `Product with ID ${productId} does not exist.`);
+              this.form.patchValue({ productName: null, productPrice: null });
+            }
+          }
+        );
       }
     });
   }
