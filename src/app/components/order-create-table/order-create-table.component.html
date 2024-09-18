@@ -9,16 +9,16 @@
       <!-- Linha para Customer e Restaurant -->
       <div class="grid">
         <div class="field col-2">
-          <label for="customer">
+          <label for="customerId">
             <i class="pi pi-search mr-1"></i>
             Customer ID
           </label>
           <input
             type="number"
             pInputText
-            formControlName="customer"
+            formControlName="customerId"
             class="w-full"
-            name="customer"
+            name="customerId"
             [readonly]="!canModifyOrder()"
           />
           <small
@@ -42,16 +42,16 @@
         </div>
 
         <div class="field col-2">
-          <label for="restaurant">
+          <label for="restaurantId">
             <i class="pi pi-search mr-1"></i>
             Restaurant ID
           </label>
           <input
             type="number"
             pInputText
-            formControlName="restaurant"
+            formControlName="restaurantId"
             class="w-full"
-            name="restaurant"
+            name="restaurantId"
             [readonly]="!canModifyOrder()"
           />
           <small
@@ -163,7 +163,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
             <tr>
-              <td>{{ rowData.product.name }}</td>
+              <td>{{ rowData.name }}</td>
               <td>{{ rowData.quantity }}</td>
               <td>{{ rowData.price | currency }}</td>
               <td>{{ rowData.price * rowData.quantity | currency }}</td>

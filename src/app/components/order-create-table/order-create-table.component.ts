@@ -40,9 +40,9 @@ export class OrderCreateV2Component {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: [null],
-      customer: [null, Validators.required],
+      customerId: [null, Validators.required],
       customerName: [{ value: '', disabled: true }],
-      restaurant: [null, Validators.required],
+      restaurantId: [null, Validators.required],
       restaurantName: [{ value: '', disabled: true }],
       product: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
       productQuantity: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
@@ -63,15 +63,22 @@ export class OrderCreateV2Component {
   }
 
   onChanges(): void {
-    this.form.get('customer')!.valueChanges.subscribe((customerId) => {
+    this.form.get('customerId')!.valueChanges.subscribe((customerId) => {
       if (customerId) {
-        this.customerService.getCustomerById(customerId).subscribe((data) => {
-          this.form.patchValue({ customerName: data.firstName + ' ' + data.lastName });
-        });
+        this.customerService.getCustomerById(customerId).subscribe(
+          {
+            next: (data) => {
+              this.form.patchValue({ customerName: data.name });
+            },
+            error: (error) => {
+              this.errorHandler.handleError(error, `Customer with ID ${customerId} does not exist.`);
+              this.form.patchValue({ restaurantName: null });
+            }
+          });
       }
     });
 
-    this.form.get('restaurant')!.valueChanges.subscribe((restaurantId) => {
+    this.form.get('restaurantId')!.valueChanges.subscribe((restaurantId) => {
       if (restaurantId) {
         this.restaurantService.getRestaurantById(restaurantId).subscribe({
           next: (data) => {
@@ -106,11 +113,11 @@ export class OrderCreateV2Component {
   }
 
   get customer() {
-    return this.form.controls['customer'];
+    return this.form.controls['customerId'];
   }
 
   get restaurant() {
-    return this.form.controls['restaurant'];
+    return this.form.controls['restaurantId'];
   }
 
   get product() {
@@ -140,7 +147,7 @@ export class OrderCreateV2Component {
 
       const newItem = this.fb.group({
         id: [this.itemsArray.length + 1],
-        product: this.fb.group({ id: [product], name: [productName] }),
+        name: [productName],
         quantity: [productQuantity, [Validators.required, Validators.min(1)]],
         price: [productPrice, Validators.required],
       });
@@ -157,7 +164,6 @@ export class OrderCreateV2Component {
       return
     }
   }
-
   get total(): number {
     return this.itemsArray.controls.reduce((total, item) => {
       const price = item.get('price')?.value || 0;
@@ -183,14 +189,11 @@ export class OrderCreateV2Component {
     items.forEach(item => {
 
       const itemGroup = this.fb.group({
-        id: [item.id],
-        price: [item.price],
+        id: item.id,
+        price: item.price,
         quantity: [item.quantity, Validators.required],
-        product: this.fb.group({
-          id: [item.product.id],
-          name: [item.product.name]
-        })
-      });
+        name: item.name,
+      })
 
       itemsFormArray.push(itemGroup);
 
@@ -203,18 +206,16 @@ export class OrderCreateV2Component {
   loadOrder(orderId: number) {
     this.orderService.findOrderById(orderId).subscribe({
       next: (order: Order) => {
-        console.log('Order Service Data Received', order);
         this.form.patchValue({
           id: order.id,
-          customer: order.customer.id,
-          restaurant: order.restaurant.id,
+          customerId: order.customerId,
+          customerName: order.customerName,
+          restaurantId: order.restaurantId,
+          restaurantName: order.restaurantName,
           status: order.status,
           total: order.total,
           createdAt: order.createdAt,
         });
-
-        this.form.get('customerName')?.setValue(order.customer.name);
-        this.form.get('restaurantName')?.setValue(order.restaurant.name);
 
         this.setOrderItems(order.items);
 
