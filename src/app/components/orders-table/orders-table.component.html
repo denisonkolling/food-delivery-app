@@ -22,8 +22,8 @@
       <tr>
         <td class="text-center">{{ order.id }}</td>
         <td>{{ order.createdAt | date : "dd/MM/yyyy" }}</td>
-        <td>{{ order.customer.name }}</td>
-        <td>{{ order.restaurant.name }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.restaurantName }}</td>
         <td class="text-center">
           <span
             [ngClass]="getStatusSeverity(order.status)"
@@ -39,15 +39,15 @@
         <td class="text-center">
           <i
             class="pi pi-eye mx-2 hover:text-400 cursor-pointer"
-            (click)="editOrder(rowIndex)"
+            (click)="editOrder(order.id)"
           ></i>
           <i
             class="pi pi-pen-to-square mx-2 hover:text-400 cursor-pointer"
-            (click)="editOrder(rowIndex)"
+            (click)="editOrder(order.id)"
           ></i>
           <i
             class="pi pi-times mx-2 hover:text-400 cursor-pointer"
-            (click)="removeOrder(rowIndex)"
+            (click)="removeOrder(order.id)"
           ></i>
         </td>
       </tr>

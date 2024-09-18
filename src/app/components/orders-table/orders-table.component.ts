@@ -91,9 +91,9 @@ export class OrdersTableComponent implements OnInit {
     }
   }
 
-  editOrder(index: number) {
-    const order = this.filteredOrders[index];
-    this.router.navigate((['/orders/edit', order.id]));
+  editOrder(id: number) {
+    const order = this.filteredOrders[id];
+    this.router.navigate((['/orders/edit', id]));
   }
 
   filterOrdersByStatus(status: string) {
