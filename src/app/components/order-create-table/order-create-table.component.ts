@@ -50,8 +50,8 @@ export class OrderCreateV2Component {
       customerName: [{ value: '', disabled: true }],
       restaurantId: [null, Validators.required],
       restaurantName: [{ value: '', disabled: true }],
-      product: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
-      productQuantity: ['', [Validators.required, Validators.pattern(REGEX.NUMBER)]],
+      product: [null, Validators.required ],
+      productQuantity: [null, Validators.required],
       productName: [{ value: '', disabled: true }],
       productPrice: [{ value: '', disabled: true }],
       items: this.fb.array([]),
@@ -153,6 +153,7 @@ export class OrderCreateV2Component {
 
       const newItem = this.fb.group({
         id: [this.itemsArray.length + 1],
+        productId: [product],
         name: [productName],
         quantity: [productQuantity, [Validators.required, Validators.min(1)]],
         price: [productPrice, Validators.required],
@@ -182,8 +183,42 @@ export class OrderCreateV2Component {
     this.itemsArray.removeAt(index);
   }
 
-  onSubmit() {
-    console.log(this.form.value);
+  onSubmit(): void {
+    // if (this.form.valid) {
+ 
+      const orderData = {
+        customerId: this.form.get('customerId')?.value,
+        restaurantId: this.form.get('restaurantId')?.value,
+        items: this.form.get('items')?.value,
+        status: 'PENDING',
+      };
+  
+      
+      this.orderService.createOrder(orderData).subscribe({
+        next: (response) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Order Created',
+            detail: 'The order has been successfully created!',
+          });
+          this.router.navigate(['/orders']);
+        },
+        error: (err) => {
+          console.error('Error creating the order:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to create the order. Please try again.',
+          });
+        }
+      });
+    // } else {
+    //   this.messageService.add({
+    //     severity: 'error',
+    //     summary: 'Validation Error',
+    //     detail: 'Please fill in all required fields correctly.',
+    //   });
+    // }
   }
 
 

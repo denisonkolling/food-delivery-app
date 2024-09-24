@@ -96,7 +96,7 @@
             *ngIf="product.invalid && (product.dirty || product.touched)"
             class="block p-error"
           >
-            <div *ngIf="product.errors?.['required']">Product is required</div>
+            <!-- <div *ngIf="product.errors?.['required']">Product is required</div> -->
           </small>
         </div>
 
@@ -126,9 +126,9 @@
             "
             class="block p-error"
           >
-            <div *ngIf="productQuantity.errors?.['required']">
+            <!-- <div *ngIf="productQuantity.errors?.['required']">
               Quantity is required
-            </div>
+            </div> -->
           </small>
         </div>
 
