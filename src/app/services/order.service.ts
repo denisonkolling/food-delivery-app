@@ -21,4 +21,9 @@ export class OrderService {
     findOrderById(id: number): Observable<Order> {
         return this.http.get<Order>(`${BASE_URL.BASE_URL}/orders/${id}`)
     }
+
+    cancelOrderById(id: number): Observable<Order> {
+        return this.http.delete<Order>(`${BASE_URL.BASE_URL}/orders/${id}`)
+    }
 }
+

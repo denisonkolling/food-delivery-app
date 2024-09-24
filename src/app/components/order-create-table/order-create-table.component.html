@@ -203,9 +203,36 @@
             class="m-2"
             severity="secondary"
             type="button"
+            (click)="showCancelDialog()"
           ></p-button>
         </div>
       </div>
+
+      <p-dialog
+        [(visible)]="displayCancelDialog"
+        header="Cancel Confirmation"
+        modal="true"
+        [closable]="false"
+        [style]="{ width: '350px' }"
+      >
+        <p>Are you sure you want to cancel the order?</p>
+
+        <ng-template pTemplate="footer">
+          <p-button
+            label="Yes"
+            icon="pi pi-check"
+            (click)="onConfirmCancel(form.get('id')?.value)"
+            class="p-button-text"
+          ></p-button>
+          <p-button
+            label="No"
+            icon="pi pi-times"
+            severity="secondary"
+            (click)="onRejectCancel()"
+            class="p-button-text"
+          ></p-button>
+        </ng-template>
+      </p-dialog>
 
       <!-- Cartão de status da ordem -->
       <div class="card p-2 border-round" *ngIf="orderStatus">

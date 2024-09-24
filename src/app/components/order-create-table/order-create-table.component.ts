@@ -10,15 +10,17 @@ import { RestaurantService } from '../../services/restaurant.service';
 import { ProductService } from '../../services/product.service';
 import { REGEX } from '../../shared/constants/regex.constants';
 import { OrderService } from '../../services/order.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../../interfaces/order.interface';
 import { OrderStatus } from '../../enums/order-status.enum';
 import { ErrorHandlerService } from '../../services/error-handler.service';
+import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-order-create-v2',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, TableModule, LayoutComponent, CommonModule, ReactiveFormsModule],
+  imports: [ButtonModule, InputTextModule, TableModule, LayoutComponent, CommonModule, ReactiveFormsModule, DialogModule],
   providers: [CustomerService, RestaurantService, ProductService, OrderService, ErrorHandlerService],
   templateUrl: './order-create-table.component.html',
   styleUrl: './order-create-table.component.css'
@@ -26,6 +28,8 @@ import { ErrorHandlerService } from '../../services/error-handler.service';
 export class OrderCreateV2Component {
 
   form!: FormGroup;
+
+  displayCancelDialog: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +39,8 @@ export class OrderCreateV2Component {
     private orderService: OrderService,
     private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService,
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -233,5 +239,55 @@ export class OrderCreateV2Component {
 
   isOrderCancelledOrCompleted(): boolean {
     return [OrderStatus.CANCELLED, OrderStatus.COMPLETED].includes(this.orderStatus);
+  }
+
+  showCancelDialog(): void {
+    this.displayCancelDialog = true;
+  }
+
+  onConfirmCancel(orderId: number | null): void {
+    if (orderId !== null) {
+      this.cancelOrder(orderId);
+    }
+    this.displayCancelDialog = false;
+  }
+
+  onRejectCancel(): void {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Cancelled',
+      detail: 'Cancellation action aborted',
+    });
+    this.displayCancelDialog = false;
+  }
+
+  cancelOrder(orderId: number): void {
+    if (orderId) {
+      this.orderService.cancelOrderById(orderId).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Order successfully cancelled',
+          });
+          this.router.navigate(['/orders']);
+        },
+        error: (err) => {
+          console.error('Error cancelling the order:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to cancel order',
+          });
+        },
+      });
+    } else {
+      console.error('Invalid Order ID');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Order ID is missing or invalid',
+      });
+    }
   }
 }
