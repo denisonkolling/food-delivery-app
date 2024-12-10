@@ -1,27 +1,99 @@
-# FoodDeliveryApp
+<h1 align="center">Delivery App</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+<p align="center">
+  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>
+  
+</p>
 
-## Development server
+<br>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Technologies
 
-## Code scaffolding
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 💻 Project
 
-## Build
+**Application for registering food delivery orders.** Users can create orders and manage delivery drivers. The interface was built using the [PrimeNG component library](https://primeng.org/), ensuring a modern and responsive user experience.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🔖 Layout
 
-## Running unit tests
+### 1. Orders
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Project screen:
 
-## Running end-to-end tests
+<p align="center">
+  <img alt="home page" src="./public/screenshots/orders-list.png" width="80%">
+</p>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p align="center">
+  <img alt="home page" src="./public/screenshots/order-completed.png" width="80%">
+</p>
 
-## Further help
+<p align="center">
+  <img alt="home page" src="./public/screenshots/order-pending.png" width="80%">
+</p>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<p align="center">
+  <img alt="home page" src="./public/screenshots/order-cancelled.png" width="80%">
+</p>
+
+<p align="center">
+  <img alt="home page" src="./public/screenshots/create-order-form.png" width="80%">
+</p>
+
+### 2. Products
+
+Project screen:
+
+<p align="center">
+  <img alt="sign up page" src="./public/screenshots/products-list.png" width="60%">
+</p>
+
+<p align="center">
+  <img alt="sign up page" src="./public/screenshots/products-details.png" width="60%">
+</p>
+
+### 3. Dashboard
+
+Project screen:
+
+<p align="center">
+  <img alt="sign in page" src="./public/screenshots/dashboard.png" width="80%">
+</p>
+
+### 4. User Profile
+
+Project screen:
+
+<p align="center">
+  <img alt="sign up page" src="./public/screenshots/user-profile-settings.png" width="40%">
+</p>
+
+<p align="center">
+  <img alt="sign up page" src="./public/screenshots/user-profile-settings-2.png" width="40%">
+</p>
+
+### 5. Driver
+
+Project screen:
+
+<p align="center">
+  <img alt="sign up page" src="./public/screenshots/create-driver.png" width="60%">
+</p>
+
+## 🚧 Prerequisites
+
+# Running the API
+
+To set up and run the API, use the following command:
+
+```bash
+json-server --watch db.json
+
+---
+```

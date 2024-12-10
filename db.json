@@ -6,18 +6,6 @@
       "email": "john@gmail.com",
       "password": "John@123",
       "photo": "https://img.freepik.com/free-photo/medium-shot-happy-man-smiling_23-2148221808.jpg?size=626&ext=jpg"
-    },
-    {
-      "id": "2",
-      "fullName": "DENISON PERIN KOLLING",
-      "email": "denisonkolling@gmail.com",
-      "password": "Teste@teste1234"
-    },
-    {
-      "id": "3",
-      "fullName": "Amanda Forster",
-      "email": "amanda@gmail.com",
-      "password": "Amanda@2024"
     }
   ],
   "customers": [
@@ -438,7 +426,7 @@
       "name": "Sushi Combo",
       "price": 32.99,
       "description": "A selection of fresh sushi rolls, ideal for sushi lovers.",
-      "imageUrl": "https://lh3.googleusercontent.com/proxy/H7y_loaUAQjXGto_o_oIbeHA0W28t5N63zxcDUqhj935uwbaNmMNcLpxK3wLtrlrivTCYgMaJn8bPvo5NbdBnvuC7GV42poOXz3JrMN_oYfiy2tzBdTmbj0PYPTfdmYn6qys4Wg7aqETZd7UESoo9buBB8UZCw"
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZw-ddMT2I0j-7rcnREtTxXNENI7VNicSzA&s"
     },
     {
       "id": "8",
