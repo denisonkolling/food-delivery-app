@@ -1,17 +1,17 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
     <div class="flex flex-row align-items-center">
-      <i class="pi pi-truck" style="font-size: 2rem"></i>
-      <h3 class="text-center">&nbsp;&nbsp;Food Delivery</h3>
+      <i class="pi pi-truck text-gray-600" style="font-size: 2rem"></i>
+      <h3 class="text-center text-gray-600">&nbsp;&nbsp;Food Delivery</h3>
+      <i
+        class="pi pi-bars mx-4 text-gray-500 border-2 border-round-3xl mx-2 p-2 hover:bg-gray-200"
+        style="cursor: pointer; font-size: 1.5rem"
+        (click)="toggleSidebar()"
+        title="{{ isSidebarVisible ? 'Hide' : 'Show' }}"
+      ></i>
     </div>
   </div>
   <div class="p-toolbar-group-end flex gap-2">
     <p-button label="Logout" icon="pi pi-sign-out" (onClick)="logout()" />
-    <p-button
-      label="{{ isSidebarVisible ? 'Hide' : 'Show' }}"
-      icon="pi pi-bars"
-      (click)="toggleSidebar()"
-    >
-    </p-button>
   </div>
 </p-toolbar>
